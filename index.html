@@ -1,0 +1,2077 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CVOptimizer Pro — ATS Resume Builder · Real Job Search · PK · UAE · KSA · US · CA</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ══ MONSTER.COM INSPIRED — Deep Violet · White · Purple · Teal ══ */
+:root{
+  --mon:#3A0CA3;--mon2:#2D0980;--mon3:#E9E4F9;--mon4:rgba(58,12,163,.09);
+  --teal:#0EA5C7;--teal2:#0889A8;--teal3:#E0F6FB;--teal4:rgba(14,165,199,.09);
+  --ink:#1C1C2E;--ink2:#3F3F5A;--ink3:#6B6B8A;--ink4:#9999B0;--ink5:#EBEBF0;
+  --white:#FFFFFF;--bg:#F7F7FA;--bg2:#EFEFF5;--bg3:#E4E4EE;
+  --bd:#DDDDE8;--bd2:#C8C8D8;
+  --green:#15803D;--green3:#DCFCE7;--green4:rgba(21,128,61,.09);
+  --amber:#92400E;--amber3:#FEF3C7;--amber4:rgba(146,64,14,.09);
+  --rose:#BE1B1B;--rose3:#FEE2E2;--rose4:rgba(190,27,27,.08);
+  --r4:4px;--r6:6px;--r8:8px;--r10:10px;--r12:12px;--r16:16px;--r20:20px;
+  --f:'Inter',sans-serif;--fm:'JetBrains Mono',monospace;
+  --sh:0 1px 3px rgba(0,0,0,.07),0 1px 2px rgba(0,0,0,.04);
+  --sh2:0 4px 14px rgba(58,12,163,.12);--sh3:0 8px 32px rgba(58,12,163,.14);
+  /* legacy compat */
+  --card:var(--white);--card2:var(--bg2);--line:var(--bd);--line2:var(--bd2);
+  --blue:var(--mon);--blue2:var(--mon2);--blue3:var(--mon3);--blue4:var(--mon4);
+  --blue-soft:var(--mon4);--purple-soft:var(--mon3);--purple:#5B21B6;--purple3:var(--mon3);
+  --green2:#166534;--green-soft:var(--green4);--amber-soft:var(--amber4);
+  --red-soft:var(--rose4);--red:var(--rose);--red3:var(--rose3);--red4:var(--rose4);
+  --amber:var(--amber);--orange:var(--teal);--orange2:var(--teal2);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{font-size:14px;-webkit-font-smoothing:antialiased}
+body{font-family:var(--f);background:var(--bg);color:var(--ink);min-height:100vh;line-height:1.6}
+body::before{display:none}
+a{text-decoration:none;color:inherit}
+button,input,textarea,select{font-family:var(--f)}
+#fi{display:none}
+
+/* ═══ MONSTER-STYLE TOP PROMO BAR ═══ */
+.mon-promo{background:linear-gradient(90deg,#F5A623,#F7B733);padding:.5rem 1.5rem;text-align:center;font-size:12.5px;font-weight:600;color:#1C1C2E;display:flex;align-items:center;justify-content:center;gap:.75rem}
+.mon-promo a{font-weight:800;color:#3A0CA3;text-decoration:underline;text-underline-offset:2px}
+
+/* ═══ WHITE NAV (Monster style) ═══ */
+.wf-nav{background:#fff;border-bottom:1px solid var(--bd);position:sticky;top:0;z-index:200;box-shadow:0 1px 4px rgba(58,12,163,.06)}
+.wf-nav-inner{max-width:1200px;margin:0 auto;height:64px;display:flex;align-items:center;padding:0 1.5rem;gap:0}
+.wf-brand{display:flex;align-items:center;gap:0;margin-right:2.5rem;text-decoration:none}
+.wf-wordmark{font-size:22px;font-weight:900;letter-spacing:-1px;color:var(--mon);line-height:1;text-transform:uppercase;font-style:italic}
+.wf-colon{display:none}
+.wf-navlinks{display:flex;gap:0;align-items:center;flex:1}
+.wf-navlink{padding:0 15px;height:64px;display:flex;align-items:center;font-size:13.5px;font-weight:500;color:var(--ink2);cursor:pointer;border-bottom:3px solid transparent;transition:all .15s;border:none;background:none;white-space:nowrap}
+.wf-navlink:hover{color:var(--mon);background:var(--mon4)}
+.wf-navlink.active{color:var(--mon);border-bottom:3px solid var(--mon);font-weight:700}
+.wf-navlink.done::after{content:' ✓';font-size:10px;color:var(--green)}
+.wf-right{margin-left:auto;display:flex;align-items:center;gap:9px}
+.wf-login{padding:8px 18px;border:1.5px solid var(--bd2);border-radius:var(--r8);font-size:13px;font-weight:600;color:var(--ink);background:#fff;cursor:pointer;transition:all .15s}
+.wf-login:hover{background:var(--bg2);border-color:var(--mon)}
+.wf-signup{padding:8px 18px;border-radius:var(--r8);font-size:13px;font-weight:700;color:#fff;background:var(--mon);border:none;cursor:pointer;transition:all .15s;box-shadow:0 2px 8px rgba(58,12,163,.25)}
+.wf-signup:hover{background:var(--mon2);transform:translateY(-1px)}
+.ai-pill{display:flex;align-items:center;gap:6px;padding:5px 12px;border-radius:var(--r20);border:1.5px solid var(--bd2);background:#fff;font-size:11.5px;font-weight:700;cursor:pointer;color:var(--ink2);transition:all .18s}
+.ai-pill:hover{background:var(--bg2);border-color:var(--mon)}
+.ai-dot{width:7px;height:7px;border-radius:50%;background:var(--ink4);flex-shrink:0;transition:background .3s}
+.ai-dot.ok{background:var(--green);box-shadow:0 0 5px rgba(21,128,61,.4)}
+.ai-dot.err{background:var(--rose);box-shadow:0 0 5px rgba(190,27,27,.35)}
+.ai-dot.spin{background:var(--teal);animation:monpulse .8s infinite}
+@keyframes monpulse{0%,100%{opacity:1}50%{opacity:.35}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.hdr{display:none}
+
+/* ═══ MONSTER HERO (jobs tab only) ═══ */
+.mon-hero{background:linear-gradient(135deg,#1A0660 0%,#3A0CA3 55%,#5B1FDB 100%);padding:3rem 1.5rem 2.5rem;text-align:center;margin-bottom:0}
+.mon-hero h2{font-size:32px;font-weight:800;color:#fff;letter-spacing:-.5px;margin-bottom:.5rem;line-height:1.2}
+.mon-hero h2 strong{font-style:italic}
+.mon-hero p{font-size:14px;color:rgba(255,255,255,.75);margin-bottom:1.5rem}
+/* Monster search bar */
+.mon-search-bar{background:#fff;border-radius:var(--r8);display:flex;align-items:center;max-width:860px;margin:0 auto 1.25rem;box-shadow:0 4px 24px rgba(0,0,0,.25);overflow:hidden}
+.mon-search-bar input{flex:1;padding:14px 18px;border:none;font-size:15px;color:var(--ink);background:transparent;min-width:0}
+.mon-search-bar input:focus{outline:none}
+.mon-search-bar .ms-div{width:1px;background:#E0E0E0;height:36px;flex-shrink:0}
+.mon-search-btn{background:var(--mon);color:#fff;border:none;padding:14px 24px;font-size:15px;font-weight:700;cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:7px;flex-shrink:0}
+.mon-search-btn:hover{background:var(--mon2)}
+.mon-search-btn svg{width:18px;height:18px;fill:#fff}
+/* Popular searches */
+.pop-searches{max-width:860px;margin:0 auto}
+.pop-label{font-size:12px;color:rgba(255,255,255,.65);margin-bottom:.5rem;text-align:left}
+.pop-chips{display:flex;gap:7px;flex-wrap:wrap}
+.pop-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:var(--r20);background:rgba(255,255,255,.12);color:#fff;font-size:12.5px;font-weight:600;cursor:pointer;transition:all .18s;border:1px solid rgba(255,255,255,.2);text-decoration:none}
+.pop-chip:hover{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.4);transform:translateY(-1px)}
+.pop-chip svg{width:12px;height:12px;opacity:.7}
+
+/* ═══ PAGE ═══ */
+.app{max-width:1200px;margin:0 auto;padding:1.5rem 1.5rem 3rem}
+.sec{display:none}.sec.active{display:block}
+
+/* ═══ AI PANEL ═══ */
+.ai-panel{background:#fff;border:1.5px solid var(--bd2);border-radius:var(--r12);padding:1rem;box-shadow:var(--sh3);display:none;position:fixed;right:1.5rem;top:70px;width:300px;z-index:400}
+.ai-panel.open{display:block}
+.ai-panel-head{font-size:12.5px;font-weight:800;margin-bottom:.7rem;color:var(--ink)}
+.ai-field{margin-bottom:.5rem}
+.ai-field label{font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.6px;display:block;margin-bottom:3px}
+.ai-field input,.ai-field select{width:100%;padding:7px 10px;border:1.5px solid var(--bd2);border-radius:var(--r8);font-size:12.5px;background:var(--bg2);color:var(--ink)}
+.ai-field input:focus,.ai-field select:focus{outline:none;border-color:var(--mon)}
+#ai-status-txt{font-size:11px;color:var(--ink3);margin-top:.5rem;line-height:1.5}
+
+/* ═══ CARDS ═══ */
+.card{background:#fff;border:1.5px solid var(--bd);border-radius:var(--r12);padding:1.1rem 1.25rem;margin-bottom:.9rem;box-shadow:var(--sh)}
+.card2{background:var(--bg2);border-radius:var(--r8);padding:.75rem .9rem;margin-bottom:.7rem;border:1px solid var(--bd)}
+.lbl{font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.6px;margin-bottom:4px;display:block}
+input[type=text],input[type=search],textarea,select.inp{width:100%;padding:9px 12px;border:1.5px solid var(--bd2);border-radius:var(--r8);font-size:13px;color:var(--ink);background:#fff;transition:all .15s}
+textarea{min-height:150px;resize:vertical;line-height:1.65}
+input:focus,textarea:focus,select.inp:focus{outline:none;border-color:var(--mon);box-shadow:0 0 0 3px var(--mon4)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.frow{display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end}
+.fg{display:flex;flex-direction:column;gap:4px}
+.hr{height:1px;background:var(--bd);margin:.9rem 0}
+.or{display:flex;align-items:center;gap:9px;margin:.5rem 0;color:var(--ink4);font-size:12px}
+.or::before,.or::after{content:'';flex:1;height:1px;background:var(--bd)}
+
+/* ═══ BUTTONS ═══ */
+.btn{padding:9px 20px;border-radius:var(--r8);font-size:13px;font-weight:700;cursor:pointer;transition:all .18s;border:1.5px solid transparent;display:inline-flex;align-items:center;gap:5px;white-space:nowrap;text-decoration:none}
+.btn-p{background:var(--mon);color:#fff;border-color:var(--mon);box-shadow:0 2px 8px rgba(58,12,163,.22)}.btn-p:hover{background:var(--mon2);transform:translateY(-1px)}
+.btn-p:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.btn-b{background:var(--teal);color:#fff;border-color:var(--teal);box-shadow:0 2px 8px rgba(14,165,199,.2)}.btn-b:hover{background:var(--teal2);transform:translateY(-1px)}
+.btn-g{background:var(--green3);color:var(--green);border-color:rgba(21,128,61,.2)}.btn-g:hover{background:rgba(21,128,61,.15)}
+.btn-o{background:#fff;color:var(--ink2);border-color:var(--bd2);box-shadow:var(--sh)}.btn-o:hover{background:var(--bg2);border-color:var(--mon)}
+.btn-v{background:var(--mon);color:#fff;border:none}.btn-v:hover{background:var(--mon2);transform:translateY(-1px)}
+.btn-doc{background:var(--mon);color:#fff;border-color:var(--mon)}.btn-doc:hover{background:var(--mon2);transform:translateY(-1px)}
+.btn-dl{background:var(--green);color:#fff;border-color:var(--green)}.btn-dl:hover{background:#166534;transform:translateY(-1px)}
+.btn-pdf{background:var(--rose);color:#fff;border-color:var(--rose)}.btn-pdf:hover{background:#aa1b1b;transform:translateY(-1px)}
+.btn-tailor{background:var(--mon);color:#fff;border:none;box-shadow:0 2px 8px rgba(58,12,163,.22);padding:9px 18px;font-size:13px;font-weight:700;border-radius:var(--r8);cursor:pointer;white-space:nowrap;transition:all .18s;display:inline-flex;align-items:center;gap:5px}
+.btn-tailor:hover{background:var(--mon2);transform:translateY(-1px)}
+.btn-apply{background:#fff;color:var(--ink2);border:1.5px solid var(--bd2);padding:9px 16px;font-size:13px;font-weight:700;border-radius:var(--r8);cursor:pointer;white-space:nowrap;transition:all .18s;display:inline-flex;align-items:center;gap:5px;text-decoration:none;box-shadow:var(--sh)}
+.btn-apply:hover{background:var(--mon3);color:var(--mon);border-color:var(--mon)}
+.btn-sm{padding:6px 13px;font-size:12px}
+.btn-xs{padding:3px 9px;font-size:11.5px}
+
+/* ═══ BADGES ═══ */
+.badge{display:inline-flex;align-items:center;padding:3px 9px;border-radius:var(--r20);font-size:11px;font-weight:700}
+.bg-g{background:var(--green3);color:var(--green)}.bg-a{background:var(--amber3);color:var(--amber)}
+.bg-r{background:var(--rose3);color:var(--rose)}.bg-b{background:var(--mon3);color:var(--mon)}
+.bg-p{background:var(--mon3);color:var(--mon)}
+.ai-sample-badge{background:var(--teal3);color:var(--teal2);border:1px solid rgba(14,165,199,.25);font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:var(--r20)}
+
+/* ═══ NOTICES ═══ */
+.notice{border-radius:var(--r8);padding:.65rem 1rem;font-size:12.5px;margin-bottom:.85rem;border:1.5px solid;display:flex;align-items:flex-start;gap:8px}
+.n-info{background:var(--mon4);border-color:rgba(58,12,163,.15);color:var(--mon2)}
+.n-ok{background:var(--green4);border-color:rgba(21,128,61,.18);color:var(--green)}
+.n-warn{background:var(--amber4);border-color:rgba(146,64,14,.18);color:var(--amber)}
+.n-err{background:var(--rose4);border-color:rgba(190,27,27,.18);color:var(--rose)}
+
+/* ═══ SCORE BOOST ═══ */
+.boost-badge{display:inline-flex;align-items:center;gap:3px;padding:2px 7px;border-radius:var(--r20);font-size:10.5px;font-weight:700;background:var(--green3);color:var(--green);border:1px solid rgba(21,128,61,.18);margin-left:6px}
+.apply-fix-btn{background:var(--mon);color:#fff;border:none;padding:6px 13px;border-radius:var(--r6);font-size:12px;font-weight:700;cursor:pointer;transition:all .15s;white-space:nowrap;display:inline-flex;align-items:center;gap:4px;box-shadow:0 2px 6px rgba(58,12,163,.2)}
+.apply-fix-btn:hover{background:var(--mon2);transform:translateY(-1px)}
+.score-proj{background:linear-gradient(135deg,var(--green4),var(--mon4));border:1.5px solid rgba(58,12,163,.14);border-radius:var(--r12);padding:.9rem 1rem;margin-bottom:.9rem}
+.score-proj-title{font-size:13px;font-weight:700;color:var(--mon);margin-bottom:.5rem}
+.live-badge{display:inline-flex;align-items:center;gap:4px;font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:var(--r20);background:var(--green3);color:var(--green);border:1px solid rgba(21,128,61,.2)}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:monpulse .8s infinite}
+
+/* ═══ FIX MODAL ═══ */
+.fix-modal-overlay{position:fixed;inset:0;background:rgba(28,28,46,.55);z-index:500;display:flex;align-items:center;justify-content:center;padding:1rem}
+.fix-modal{background:#fff;border-radius:var(--r16);padding:1.75rem;max-width:640px;width:100%;box-shadow:0 24px 64px rgba(58,12,163,.22);max-height:88vh;overflow-y:auto}
+.fix-modal-title{font-size:18px;font-weight:800;letter-spacing:-.3px;margin-bottom:.3rem;color:var(--ink)}
+.fix-modal-sub{font-size:13px;color:var(--ink3);margin-bottom:1.1rem}
+.fix-option{border:1.5px solid var(--bd);border-radius:var(--r12);padding:1rem 1.15rem;margin-bottom:.8rem;cursor:pointer;transition:all .2s}
+.fix-option:hover{border-color:var(--mon);background:var(--mon4)}
+.fix-option.selected{border-color:var(--mon);background:var(--mon4)}
+.fix-option-label{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;color:var(--mon);margin-bottom:.4rem;display:flex;align-items:center;gap:7px}
+.fix-option-text{font-size:12px;line-height:1.7;color:var(--ink);font-family:var(--fm);white-space:pre-wrap;background:var(--bg2);border-radius:var(--r8);padding:.7rem .9rem;margin-top:.4rem}
+.fix-modal-loading{text-align:center;padding:2.5rem 0;color:var(--ink3)}
+.fix-score-gain{display:inline-flex;align-items:center;gap:4px;background:var(--green3);color:var(--green);padding:2px 9px;border-radius:var(--r20);font-size:11px;font-weight:700;margin-left:6px}
+
+/* ═══ DROPZONE ═══ */
+.dz{border:2px dashed var(--bd2);border-radius:var(--r12);padding:2.5rem 1rem;text-align:center;cursor:pointer;transition:all .2s;background:var(--bg2)}
+.dz:hover,.dz.drag{border-color:var(--mon);background:var(--mon4)}
+.dz-ico{width:52px;height:52px;background:#fff;border-radius:var(--r12);display:flex;align-items:center;justify-content:center;margin:0 auto .75rem;box-shadow:var(--sh2)}
+.dz-ico svg{width:24px;height:24px;stroke:var(--mon);fill:none}
+.dz h3{font-size:15px;font-weight:700;margin-bottom:4px;color:var(--ink)}
+.dz p{font-size:12.5px;color:var(--ink3)}
+.ft-row{display:flex;gap:6px;justify-content:center;margin-top:.6rem}
+.ft{background:#fff;border:1.5px solid var(--bd2);border-radius:var(--r6);padding:3px 10px;font-size:11.5px;color:var(--ink3);font-weight:600}
+.file-ok{display:none;align-items:center;gap:8px;background:var(--green3);border:1.5px solid rgba(21,128,61,.2);border-radius:var(--r8);padding:.6rem 1rem;font-size:13px;color:var(--green);margin-top:8px;font-weight:700}
+.file-ok.show{display:flex}
+.cv-prev{background:var(--bg2);border:1.5px solid var(--bd);border-radius:var(--r8);padding:.8rem 1rem;font-size:11.5px;line-height:1.7;color:var(--ink3);max-height:200px;overflow-y:auto;white-space:pre-wrap;font-family:var(--fm);margin-top:8px;display:none}
+.cv-prev.show{display:block}
+
+/* ═══ SCORE RING ═══ */
+.sring{position:relative;width:92px;height:92px;flex-shrink:0}
+.sring svg{transform:rotate(-90deg)}
+.sval{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:var(--ink)}
+.mc{background:var(--bg2);border-radius:var(--r8);padding:12px 14px;border:1.5px solid var(--bd)}
+.mc .v{font-size:21px;font-weight:800;color:var(--ink)}.mc .l{font-size:11px;color:var(--ink3);margin-top:1px}
+.pbar{height:5px;background:var(--bg3);border-radius:4px;overflow:hidden;margin-top:4px}
+.pfill{height:100%;border-radius:4px;transition:width .8s}
+.imp{background:#fff;border:1.5px solid var(--bd);border-radius:var(--r8);padding:.9rem 1rem;margin-bottom:8px}
+.imp.high{border-left:3px solid var(--rose)}.imp.med{border-left:3px solid var(--teal)}.imp.low{border-left:3px solid var(--green)}
+.sum-opt{background:#fff;border:1.5px solid var(--bd);border-radius:var(--r10);padding:.85rem 1rem;cursor:pointer;transition:all .18s;display:flex;gap:10px;margin-bottom:8px}
+.sum-opt:hover{border-color:var(--mon);background:var(--mon4)}
+.sum-opt.sel{border-color:var(--mon);background:var(--mon4)}
+.sum-num{width:24px;height:24px;border-radius:50%;background:var(--mon);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.kw{display:inline-block;padding:2px 8px;background:var(--bg2);border:1.5px solid var(--bd);border-radius:var(--r20);font-size:11px;color:var(--ink3);margin:2px;font-weight:500}
+.kw.hit{background:var(--green3);border-color:rgba(21,128,61,.2);color:var(--green)}
+.kw.miss{background:var(--rose3);border-color:rgba(190,27,27,.2);color:var(--rose)}
+.li-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.li-res{margin-top:.6rem;display:none}.li-res.show{display:block}
+
+/* ═══ MARKET TABS ═══ */
+.mkt-tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:1rem}
+.mkt-btn{padding:7px 16px;border-radius:var(--r20);border:1.5px solid var(--bd2);background:#fff;color:var(--ink3);font-size:12.5px;font-weight:600;cursor:pointer;transition:all .18s}
+.mkt-btn:hover{background:var(--mon3);color:var(--mon);border-color:var(--mon)}
+.mkt-btn.active.all{background:var(--mon);color:#fff;border-color:var(--mon)}
+.mkt-btn.active.pk{background:#166534;color:#fff;border-color:#166534}
+.mkt-btn.active.ae{background:linear-gradient(90deg,#005C1B,#BF0000);color:#fff;border-color:transparent}
+.mkt-btn.active.sa{background:#004B23;color:#fff;border-color:#004B23}
+.mkt-btn.active.us{background:#1B4BFF;color:#fff;border-color:#1B4BFF}
+.mkt-btn.active.ca{background:#CC0000;color:#fff;border-color:#CC0000}
+
+/* ═══ PORTAL CHIPS ═══ */
+.portal-chips-bar{background:#fff;border:1.5px solid var(--bd);border-radius:var(--r12);padding:.85rem 1.1rem;margin-bottom:.9rem;box-shadow:var(--sh)}
+.portal-chips-label{font-size:12px;font-weight:700;color:var(--ink2);margin-bottom:.6rem}
+.portal-chips{display:flex;gap:7px;flex-wrap:wrap}
+.pchip{display:inline-flex;align-items:center;gap:6px;padding:5px 13px;border-radius:var(--r20);font-size:12px;font-weight:600;text-decoration:none;border:1.5px solid var(--bd2);background:var(--bg2);color:var(--ink2);transition:all .18s;cursor:pointer}
+.pchip:hover{background:var(--mon3);color:var(--mon);border-color:var(--mon);transform:translateY(-1px);box-shadow:var(--sh)}
+.pchip.off{opacity:.35;cursor:not-allowed;pointer-events:none}
+.pc-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
+/* ═══ COUNTRY+CITY SELECTORS ═══ */
+.country-sel,.city-sel{padding:10px 12px;border:1.5px solid var(--bd2);border-radius:var(--r8);font-size:13px;color:var(--ink);background:#fff;cursor:pointer;transition:all .15s;width:100%}
+.country-sel:focus,.city-sel:focus{outline:none;border-color:var(--mon);box-shadow:0 0 0 3px var(--mon4)}
+
+/* ═══ SEARCH CARD (secondary — below hero) ═══ */
+.search-card{background:#fff;border:1.5px solid var(--bd);border-radius:var(--r12);padding:1rem 1.1rem;margin-bottom:.9rem;box-shadow:var(--sh)}
+.search-row{display:flex;gap:9px;align-items:flex-end;flex-wrap:wrap}
+.search-field{display:flex;flex-direction:column;gap:4px}
+.search-input{padding:10px 14px;border:1.5px solid var(--bd2);border-radius:var(--r8);font-size:13.5px;font-weight:500;color:var(--ink);background:#fff;transition:all .15s}
+.search-input:focus{outline:none;border-color:var(--mon);box-shadow:0 0 0 3px var(--mon4)}
+.search-input::placeholder{color:var(--ink4)}
+.time-tog{display:flex;border:1.5px solid var(--bd2);border-radius:var(--r8);overflow:hidden;background:#fff}
+.tmbtn{padding:8px 12px;font-size:12px;font-weight:700;cursor:pointer;background:transparent;color:var(--ink3);border:none;transition:all .15s}
+.tmbtn.active{background:var(--mon);color:#fff}
+
+/* ═══ JOBS META ═══ */
+.jobs-meta{font-size:12.5px;color:var(--ink2);margin-bottom:.75rem;padding:.55rem .9rem;background:var(--mon4);border-radius:var(--r8);border:1.5px solid rgba(58,12,163,.14);display:none}
+.jobs-meta.show{display:block}
+
+/* ═══ JOB PORTAL CARDS (Monster style) ═══ */
+.portal-job-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-bottom:1rem}
+.portal-jcard{background:#fff;border:1.5px solid var(--bd);border-radius:var(--r12);padding:1.1rem 1.2rem;transition:all .2s;box-shadow:var(--sh);display:flex;flex-direction:column;gap:8px;text-decoration:none;color:inherit}
+.portal-jcard:hover{border-color:var(--mon);box-shadow:var(--sh2);transform:translateY(-2px)}
+.pjc-portal{display:flex;align-items:center;gap:6px;margin-bottom:2px}
+.pjc-portal-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.pjc-portal-name{font-size:10.5px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.4px}
+.pjc-title{font-size:14.5px;font-weight:800;color:var(--mon);letter-spacing:-.2px;line-height:1.3}
+.pjc-city{font-size:12px;color:var(--ink3);display:flex;align-items:center;gap:4px}
+.pjc-arrow{margin-top:auto;font-size:12px;font-weight:700;color:var(--mon);display:flex;align-items:center;gap:4px}
+
+/* ═══ AI JOB CARDS (for tailoring) ═══ */
+.jcard{background:#fff;border:1.5px solid var(--bd);border-radius:var(--r12);padding:1.25rem 1.35rem;margin-bottom:.85rem;transition:all .2s;box-shadow:var(--sh)}
+.jcard:hover{border-color:var(--mon);box-shadow:var(--sh2)}
+.jcard-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:9px;margin-bottom:8px}
+.jcard-title{font-size:17px;font-weight:800;letter-spacing:-.3px;margin-bottom:4px;color:var(--ink)}
+.jcard-meta{font-size:12.5px;color:var(--ink3);display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.jcard-flags{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.match-badge{padding:4px 10px;border-radius:var(--r20);font-size:12px;font-weight:700}
+.match-hi{background:var(--green3);color:var(--green)}.match-md{background:var(--amber3);color:var(--amber)}.match-lo{background:var(--rose3);color:var(--rose)}
+.time-badge{display:flex;align-items:center;gap:4px;padding:3px 9px;border-radius:var(--r20);font-size:11.5px;font-weight:600;background:var(--bg2);color:var(--ink3);border:1.5px solid var(--bd)}
+.jcard-desc{font-size:13px;color:var(--ink3);margin-bottom:9px;line-height:1.6}
+.match-box{background:var(--green4);border:1.5px solid rgba(21,128,61,.14);border-radius:var(--r8);padding:.6rem .85rem;margin-bottom:9px}
+.match-box-head{font-size:11px;font-weight:700;color:var(--green);margin-bottom:4px;text-transform:uppercase;letter-spacing:.4px}
+.match-box-item{font-size:12.5px;color:var(--ink2);display:flex;align-items:flex-start;gap:5px;margin-bottom:1px}
+.hr-block{background:var(--mon4);border-radius:var(--r8);padding:.7rem 1rem;margin-bottom:9px;border:1.5px solid rgba(58,12,163,.12)}
+.hr-block-head{font-size:10px;font-weight:700;color:var(--mon);text-transform:uppercase;letter-spacing:.6px;margin-bottom:5px}
+.hr-name{font-size:13.5px;font-weight:700;color:var(--ink);margin-bottom:3px}
+.hr-email{font-size:13px;color:var(--mon);font-weight:700;display:inline-flex;align-items:center;gap:5px}
+.hr-email:hover{text-decoration:underline}
+.hr-wa{font-size:12.5px;color:#166534;font-weight:600;display:block;margin-top:3px}
+.hr-addr{font-size:11.5px;color:var(--ink3);margin-top:3px}
+.card-portals{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:9px}
+.card-portal{display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border-radius:var(--r20);font-size:11.5px;font-weight:600;text-decoration:none;border:1.5px solid var(--bd2);background:var(--bg2);color:var(--ink2);transition:all .15s;cursor:pointer}
+.card-portal:hover{background:var(--mon3);color:var(--mon);border-color:rgba(58,12,163,.25)}
+.kw-row{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px}
+.kwtag{display:inline-block;padding:2px 9px;background:var(--bg2);border:1.5px solid var(--bd);border-radius:var(--r20);font-size:11.5px;color:var(--ink3);font-weight:500}
+.jcard-foot{display:flex;justify-content:flex-end;align-items:center;flex-wrap:wrap;gap:8px;padding-top:10px;border-top:1px solid var(--bd)}
+.jcard-actions{display:flex;gap:8px;align-items:center}
+
+/* ═══ LOADING ═══ */
+.dots{display:inline-flex;gap:5px;align-items:center}
+.dots span{width:7px;height:7px;border-radius:50%;background:var(--mon);animation:bop 1.2s infinite}
+.dots span:nth-child(2){animation-delay:.2s}.dots span:nth-child(3){animation-delay:.4s}
+@keyframes bop{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-7px)}}
+
+/* ═══ DOWNLOAD ═══ */
+.outbox{background:var(--bg2);border-radius:var(--r8);padding:.9rem 1rem;font-size:12px;line-height:1.8;color:var(--ink);white-space:pre-wrap;max-height:500px;overflow-y:auto;border:1.5px solid var(--bd);font-family:var(--fm)}
+.itabs{display:flex;gap:1px;border-bottom:2px solid var(--bd);margin-bottom:.9rem}
+.itab{padding:8px 16px;font-size:13px;font-weight:700;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;color:var(--ink3);background:none;border-top:none;border-left:none;border-right:none;transition:all .15s}
+.itab.active{color:var(--mon);border-bottom-color:var(--mon)}
+.dl-bar{background:var(--green4);border:1.5px solid rgba(21,128,61,.18);border-radius:var(--r12);padding:.9rem 1.1rem;margin-bottom:.9rem}
+.dl-bar-h{font-size:13px;font-weight:700;color:var(--green);margin-bottom:.55rem}
+.dl-row{display:flex;gap:8px;flex-wrap:wrap}
+#dl-status{font-size:12px;color:var(--green);margin-top:.5rem;display:none;font-weight:700}
+
+/* ═══ STREAMING ═══ */
+.stream-label{display:inline-flex;align-items:center;gap:6px;font-size:11px;color:var(--mon);font-weight:700;margin-bottom:4px}
+.scursor{display:inline-block;width:7px;height:12px;background:var(--mon);animation:blink .65s infinite;border-radius:1px;vertical-align:middle}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+/* ═══ MISC ═══ */
+.ttog{display:flex;border:1.5px solid var(--bd2);border-radius:var(--r8);overflow:hidden;background:#fff}
+.ttbtn{padding:6px 13px;font-size:12px;font-weight:700;cursor:pointer;background:transparent;color:var(--ink3);border:none;transition:all .15s}
+.ttbtn.active{background:var(--mon);color:#fff}
+.sec-title{font-size:22px;font-weight:800;letter-spacing:-.4px;margin-bottom:.3rem;color:var(--ink)}
+.sec-sub{font-size:13px;color:var(--ink3);margin-bottom:1.1rem}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:720px){
+  .g2,.g3{grid-template-columns:1fr}
+  .wf-navlinks{display:none}
+  .wf-right .wf-login{display:none}
+  .search-row{flex-direction:column}
+  .search-input{width:100%}
+  .dl-row{flex-direction:column}
+  .country-city-row{flex-direction:column}
+  .mon-hero h2{font-size:24px}
+  .mon-search-bar{flex-direction:column;border-radius:var(--r8)}
+  .mon-search-bar input{width:100%;border-bottom:1px solid var(--bd)}
+  .mon-search-btn{width:100%;justify-content:center}
+  .portal-job-grid{grid-template-columns:1fr}
+}
+</style>
+
+
+</head>
+<body>
+
+<div class="wf-nav">
+  <div class="wf-nav-inner">
+    <a class="wf-brand" href="#">
+      <span class="wf-wordmark">CVOptimizer</span>
+    </a>
+    <div class="wf-navlinks">
+      <button class="wf-navlink active" onclick="goTab('upload')" id="tab-upload">Upload CV</button>
+      <button class="wf-navlink" onclick="goTab('ats')" id="tab-ats">ATS Templates</button>
+      <button class="wf-navlink" onclick="goTab('score')" id="tab-score">Score &amp; Analyze</button>
+      <button class="wf-navlink" onclick="goTab('jobs')" id="tab-jobs">Find Jobs</button>
+      <button class="wf-navlink" onclick="goTab('output')" id="tab-output">Tailored Output</button>
+    </div>
+    <div class="wf-right">
+      <div class="ai-pill" onclick="togglePanel()">
+        <div class="ai-dot spin" id="ai-dot"></div>
+        <span id="ai-lbl">AI</span>
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <button class="wf-login" onclick="togglePanel()">Settings</button>
+      <button class="wf-signup" onclick="goTab('jobs')">Find Jobs →</button>
+    </div>
+  </div>
+</div>
+<!-- AI settings panel -->
+<div class="ai-panel" id="ai-panel">
+  <div class="ai-panel-head">⚙ AI Engine</div>
+  <div class="ai-field"><label>Ollama URL</label><input type="text" id="ollama-url" value="http://localhost:11434" oninput="scheduleConnect()"></div>
+  <div class="ai-field"><label>Model</label><select id="model-sel" onchange="saveModel()"><option value="">— connect first —</option></select></div>
+  <div class="ai-field"><label>Claude API Key (fallback)</label><input type="password" id="anthropic-key" placeholder="sk-ant-…"></div>
+  <div style="display:flex;gap:7px;margin-top:.55rem">
+    <button class="btn btn-b btn-sm" onclick="connectOllama()">Connect</button>
+  </div>
+  <div id="ai-status-txt">Start Ollama then click Connect. Claude API key optional.</div>
+</div>
+
+<!-- hidden legacy tabs for JS compat -->
+<div style="display:none">
+  <div class="tabs">
+    <button class="tab active" id="tab-upload-l"></button>
+    <button class="tab" id="tab-ats-l"></button>
+    <button class="tab" id="tab-score-l"></button>
+    <button class="tab" id="tab-jobs-l"></button>
+    <button class="tab" id="tab-output-l"></button>
+  </div>
+</div>
+
+<div class="app">
+
+<!-- ══ TAB 1: UPLOAD ══ -->
+<div id="sec-upload" class="sec active">
+  <div class="sec-title">Upload Your CV</div>
+  <div class="sec-sub">PDF, DOCX, or TXT — parsed locally, nothing leaves your browser</div>
+  <div class="notice n-err" id="ollama-notice" style="display:none"><span>⚠</span><span>Ollama not connected. Click the AI chip top-right. Claude API fallback active if key provided.</span></div>
+
+  <div class="dz" id="dz" onclick="document.getElementById('fi').click()">
+    <div class="dz-ico">
+      <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 12 15 15"/></svg>
+    </div>
+    <h3>Click or drag &amp; drop your CV</h3>
+    <p>Nothing is uploaded — all processing happens in your browser</p>
+    <div class="ft-row"><span class="ft">PDF</span><span class="ft">DOCX</span><span class="ft">TXT</span></div>
+  </div>
+  <input type="file" id="fi" accept=".txt,.pdf,.docx" onchange="handleFile(event)">
+  <div class="file-ok" id="file-ok">✓ <span id="file-name">file</span> — loaded</div>
+
+  <div id="cv-actions" style="display:none;margin-top:.75rem">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:7px;margin-bottom:.35rem">
+      <span style="font-size:12.5px;font-weight:700">CV preview</span>
+      <div style="display:flex;gap:6px">
+        <button class="btn btn-v btn-sm" onclick="convertToATS()">✦ Convert to ATS Format</button>
+        <button class="btn btn-o btn-sm" onclick="togglePreview()">Toggle</button>
+      </div>
+    </div>
+    <div class="cv-prev show" id="cv-preview"></div>
+  </div>
+
+  <div class="or">or paste CV text below</div>
+  <span class="lbl">CV text</span>
+  <textarea id="cv-text" placeholder="Paste your complete CV here…" oninput="onCVPaste()"></textarea>
+  <div id="tpl-notice" style="display:none;margin-top:.5rem" class="notice n-ok"></div>
+
+  <div class="hr"></div>
+  <div class="g2" style="margin-bottom:.85rem">
+    <div><span class="lbl">Target job role <span style="color:var(--red)">*</span></span><input type="text" id="target-role" placeholder="e.g. System Administrator, Accountant"></div>
+    <div><span class="lbl">Your city</span><input type="text" id="user-city" placeholder="e.g. Karachi, Dubai, Riyadh"></div>
+  </div>
+  <div style="display:flex;justify-content:flex-end">
+    <button class="btn btn-p" onclick="doScore()">Analyze CV →</button>
+  </div>
+</div>
+
+<!-- ══ TAB 2: ATS TEMPLATES ══ -->
+<div id="sec-ats" class="sec">
+  <div class="sec-title">ATS Templates</div>
+  <div class="sec-sub">Apply a professionally structured ATS template to your CV</div>
+  <div class="card" style="text-align:center;padding:2rem">
+    <div style="font-size:13px;color:var(--ink3);margin-bottom:.75rem">Apply the ATS template to get started quickly, then fill in your details.</div>
+    <button class="btn btn-v" onclick="applyATSTemplate()">⚡ Apply ATS Template</button>
+  </div>
+</div>
+
+<!-- ══ TAB 3: SCORE ══ -->
+<div id="sec-score" class="sec">
+  <div class="sec-title">Score &amp; Analyze</div>
+  <div class="sec-sub">AI-powered ATS evaluation for Pakistan, UAE &amp; KSA job markets</div>
+  <div id="score-loading" style="display:none;text-align:center;padding:2.5rem 0">
+    <div class="dots"><span></span><span></span><span></span></div>
+    <p style="margin-top:11px;font-size:13px;color:var(--ink3)" id="score-status">Analyzing CV…</p>
+    <div style="margin-top:10px;max-width:460px;margin-left:auto;margin-right:auto">
+      <div class="stream-label"><div class="scursor"></div> Streaming…</div>
+      <div class="outbox" id="score-stream-box" style="max-height:100px;font-size:11px"></div>
+    </div>
+  </div>
+  <div id="score-results" style="display:none">
+    <div class="card">
+      <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:space-between">
+        <div style="display:flex;align-items:center;gap:16px">
+          <div class="sring">
+            <svg width="88" height="88" viewBox="0 0 88 88">
+              <circle cx="44" cy="44" r="35" fill="none" stroke="var(--line2)" stroke-width="9"/>
+              <circle cx="44" cy="44" r="35" fill="none" id="sarc" stroke="#22C55E" stroke-width="9" stroke-dasharray="219.9" stroke-dashoffset="219.9" stroke-linecap="round"/>
+            </svg>
+            <div class="sval" id="sdisplay">0</div>
+          </div>
+          <div>
+            <div style="font-size:18px;font-weight:800" id="slabel">ATS Score</div>
+            <div style="font-size:12px;color:var(--ink3);margin-top:2px" id="sverdict"></div>
+            <div style="margin-top:5px" id="sband"></div>
+            <div style="font-size:10px;color:var(--blue);margin-top:4px;font-weight:700">scored by <span id="score-model-used">AI</span></div>
+          </div>
+        </div>
+        <div class="g3" style="min-width:210px">
+          <div class="mc"><div class="v" id="m1">–</div><div class="l">Impact</div></div>
+          <div class="mc"><div class="v" id="m2">–</div><div class="l">ATS Fit</div></div>
+          <div class="mc"><div class="v" id="m3">–</div><div class="l">Keywords</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card"><span class="lbl" style="margin-bottom:7px">Section scores</span><div id="section-scores"></div></div>
+
+    <!-- Projected score after fixes -->
+    <div class="score-proj" id="score-proj" style="display:none">
+      <div class="score-proj-title">🚀 Projected score after applying all fixes</div>
+      <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+        <div>
+          <div style="font-size:11px;color:var(--ink3);margin-bottom:2px">Current</div>
+          <div style="font-size:26px;font-weight:800;color:var(--red)" id="proj-current">–</div>
+        </div>
+        <div style="font-size:22px;color:var(--ink3)">→</div>
+        <div>
+          <div style="font-size:11px;color:var(--ink3);margin-bottom:2px">After fixes</div>
+          <div style="font-size:26px;font-weight:800;color:var(--green)" id="proj-after">–</div>
+        </div>
+        <div>
+          <div style="font-size:11px;color:var(--ink3);margin-bottom:2px">Improvement</div>
+          <div style="font-size:26px;font-weight:800;color:var(--amber)" id="proj-gain">+0 pts</div>
+        </div>
+        <div style="flex:1;min-width:160px">
+          <div style="font-size:11px;color:var(--ink3);margin-bottom:5px">Progress to 80+</div>
+          <div style="background:var(--line2);border-radius:4px;height:8px;overflow:hidden">
+            <div id="proj-bar" style="height:100%;border-radius:4px;background:linear-gradient(90deg,var(--blue),var(--green));transition:width .8s"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:7px;margin-bottom:.6rem">
+        <span style="font-size:13px;font-weight:700">Improvements</span>
+        <button class="btn btn-p btn-sm" onclick="applyAllFixes()">Apply all fixes</button>
+      </div>
+      <div id="improvements-list"></div>
+    </div>
+    <div class="card">
+      <div style="font-size:13px;font-weight:700;margin-bottom:.5rem">LinkedIn — scan &amp; add</div>
+      <div class="li-row">
+        <input type="text" id="linkedin-url" placeholder="https://linkedin.com/in/yourname" style="flex:1;min-width:180px">
+        <button class="btn btn-v btn-sm" onclick="scanLinkedIn()">Scan</button>
+        <button class="btn btn-g btn-sm" onclick="addLinkedIn()">+ Add to CV</button>
+      </div>
+      <div class="li-res" id="li-result"></div>
+    </div>
+    <div class="card" id="summary-box" style="display:none">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.5rem;flex-wrap:wrap;gap:7px">
+        <span style="font-size:13px;font-weight:700">3 Summary options</span>
+        <button class="btn btn-o btn-sm" onclick="document.getElementById('summary-box').style.display='none'">Dismiss</button>
+      </div>
+      <p style="font-size:12px;color:var(--ink3);margin-bottom:.6rem">Click to select, then Apply.</p>
+      <div id="sum-opts"></div>
+      <button class="btn btn-p btn-sm" style="margin-top:.6rem" onclick="applySummary()">✓ Apply Selected</button>
+    </div>
+    <div class="card">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:7px;margin-bottom:.55rem">
+        <span style="font-size:13px;font-weight:700">Edit CV directly</span>
+        <div style="display:flex;gap:6px">
+          <button class="btn btn-o btn-sm" onclick="reScore()">Re-score</button>
+          <button class="btn btn-p btn-sm" onclick="goTab('jobs');liveUpdatePortals()">Live Jobs →</button>
+        </div>
+      </div>
+      <textarea id="cv-edit" style="min-height:260px;font-family:var(--fm);font-size:12px"></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TAB 4: FIND JOBS ══ -->
+<div id="sec-jobs" class="sec">
+
+  <!-- Monster-style hero with search bar -->
+  <div class="mon-hero">
+    <h2>Find your <strong>next</strong> job.</h2>
+    <p>Search across real portals — Pakistan, UAE, Saudi Arabia, USA &amp; Canada. Click a portal to see live results.</p>
+    <div class="mon-search-bar">
+      <input type="search" id="jsearch" placeholder="Search jobs, keywords, companies…" oninput="liveUpdatePortals()" onkeydown="if(event.key==='Enter')renderPortalCards()">
+      <div class="ms-div"></div>
+      <input type="text" id="jcity-hero" placeholder="City or country…" style="flex:1;padding:14px 18px;border:none;font-size:15px;color:#1C1C2E;background:transparent;min-width:0;outline:none" oninput="syncHeroCity()" onkeydown="if(event.key==='Enter')renderPortalCards()">
+      <button class="mon-search-btn" onclick="renderPortalCards(), fetchJobs()">
+        <svg viewBox="0 0 24 24"><path d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"/></svg>
+        Search
+      </button>
+    </div>
+    <!-- Popular searches -->
+    <div class="pop-searches">
+      <div class="pop-label">Popular searches</div>
+      <div class="pop-chips" id="pop-chips">
+        <a class="pop-chip" onclick="setPopSearch('Software Engineer')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Software Engineer
+        </a>
+        <a class="pop-chip" onclick="setPopSearch('Data Analyst')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Data Analyst
+        </a>
+        <a class="pop-chip" onclick="setPopSearch('Project Manager')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Project Manager
+        </a>
+        <a class="pop-chip" onclick="setPopSearch('Accountant')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Accountant
+        </a>
+        <a class="pop-chip" onclick="setPopSearch('Network Administrator')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Network Admin
+        </a>
+        <a class="pop-chip" onclick="setPopSearch('Marketing Manager')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Marketing
+        </a>
+        <a class="pop-chip" onclick="setPopSearch('HR Manager')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>HR Manager
+        </a>
+        <a class="pop-chip" onclick="setPopSearch('Sales Executive')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Sales
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Below hero content -->
+  <div style="padding:1.25rem 0">
+
+    <!-- Market + filters row -->
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:1rem">
+      <div class="mkt-tabs" style="margin-bottom:0;flex:1">
+        <button class="mkt-btn active all" onclick="setMarket('all')" id="mkt-all">🌐 All</button>
+        <button class="mkt-btn pk" onclick="setMarket('pk')" id="mkt-pk">🇵🇰 Pakistan</button>
+        <button class="mkt-btn ae" onclick="setMarket('ae')" id="mkt-ae">🇦🇪 UAE</button>
+        <button class="mkt-btn sa" onclick="setMarket('sa')" id="mkt-sa">🇸🇦 Saudi Arabia</button>
+        <button class="mkt-btn us" onclick="setMarket('us')" id="mkt-us">🇺🇸 USA</button>
+        <button class="mkt-btn ca" onclick="setMarket('ca')" id="mkt-ca">🇨🇦 Canada</button>
+      </div>
+      <div style="display:flex;gap:7px;align-items:center;flex-shrink:0">
+        <select id="jcountry" class="country-sel" onchange="onCountryChange()" style="width:150px">
+          <option value="">All countries</option>
+          <option value="pk">🇵🇰 Pakistan</option>
+          <option value="ae">🇦🇪 UAE</option>
+          <option value="sa">🇸🇦 Saudi Arabia</option>
+          <option value="us">🇺🇸 United States</option>
+          <option value="ca">🇨🇦 Canada</option>
+        </select>
+        <select id="jcity-sel" class="city-sel" onchange="onCityChange()" style="width:150px">
+          <option value="">All cities</option>
+        </select>
+        <input type="text" id="jcity" style="display:none">
+        <div class="time-tog">
+          <button class="tmbtn" id="t24" onclick="setTime(24)">24h</button>
+          <button class="tmbtn active" id="t48" onclick="setTime(48)">48h</button>
+          <button class="tmbtn" id="t72" onclick="setTime(72)">72h</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Real portal card grid — this is the main CTA -->
+    <div class="portal-chips-bar" style="margin-bottom:1rem">
+      <div class="portal-chips-label" style="margin-bottom:.7rem;font-size:13px;font-weight:700;color:var(--ink)">
+        🔗 Search directly on real job portals — click any card to open with your search pre-filled:
+      </div>
+      <div id="portal-job-grid" class="portal-job-grid"></div>
+      <div style="font-size:11.5px;color:var(--ink3);margin-top:.5rem">
+        ↑ Each card opens the real portal with your keyword. Results are 100% live — not AI generated.
+      </div>
+    </div>
+
+    <!-- Quick chip row (legacy) -->
+    <div id="portal-chips" style="display:none"></div>
+
+    <!-- Jobs meta -->
+    <div class="jobs-meta" id="jobs-meta"></div>
+
+    <!-- AI sample listings for CV tailoring -->
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:.75rem">
+      <div>
+        <div style="font-size:15px;font-weight:800;color:var(--ink);letter-spacing:-.2px">AI Sample Listings — for CV Tailoring</div>
+        <div style="font-size:12px;color:var(--ink3);margin-top:2px">These are AI-generated examples to help you tailor your CV. For real jobs, use the portal cards above.</div>
+      </div>
+      <button class="btn btn-p btn-sm" onclick="fetchJobs()" id="fetch-jobs-btn">
+        <div class="dots" style="display:inline-flex;gap:3px" id="fetch-dots" style="display:none"><span style="width:5px;height:5px"></span><span style="width:5px;height:5px"></span><span style="width:5px;height:5px"></span></div>
+        Generate AI Samples
+      </button>
+    </div>
+
+    <div id="jobs-loading" style="display:none;text-align:center;padding:1.5rem 0">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <p style="margin-top:10px;font-size:13px;color:var(--ink3)" id="jstatus">Generating AI sample listings…</p>
+    </div>
+    <div id="jobs-list"></div>
+    <div id="jobs-empty" style="display:none;text-align:center;padding:2rem;color:var(--ink3);font-size:13px">
+      Click "Generate AI Samples" to create practice job listings for CV tailoring.
+    </div>
+
+    <!-- Tailor from real job -->
+    <div class="card" style="border-left:4px solid var(--mon);margin-top:.5rem">
+      <div style="font-size:15px;font-weight:800;margin-bottom:.25rem;letter-spacing:-.2px">Found a real job on a portal? Paste it here to tailor your CV</div>
+      <div style="font-size:12.5px;color:var(--ink3);margin-bottom:.85rem">Copy the job title, company, and description from any portal above — Ollama writes a perfect ATS CV for that specific role.</div>
+      <div style="display:flex;gap:9px;flex-wrap:wrap;align-items:flex-end;margin-bottom:.65rem">
+        <div class="fg" style="flex:2"><span class="lbl">Job title *</span><input type="text" id="manual-job-title" placeholder="e.g. Senior Software Engineer"></div>
+        <div class="fg" style="flex:1"><span class="lbl">Company</span><input type="text" id="manual-company" placeholder="e.g. Google"></div>
+        <div class="fg" style="flex:1"><span class="lbl">Location</span><input type="text" id="manual-location" placeholder="e.g. New York"></div>
+        <button class="btn-tailor" onclick="tailorFromManual()">🎯 Tailor My CV →</button>
+      </div>
+      <span class="lbl">Job description (paste for best ATS match)</span>
+      <textarea id="manual-job-desc" placeholder="Paste the full job description here for the most accurate, keyword-matched ATS CV…" style="min-height:90px;font-size:12.5px;margin-top:.3rem"></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TAB 5: OUTPUT ══ -->
+<div id="sec-output" class="sec">
+  <div id="tailor-empty" style="text-align:center;padding:3rem 1rem">
+    <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="var(--ink4)" stroke-width="1.2" style="margin:0 auto .75rem;display:block"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+    <div style="font-size:15px;font-weight:700;margin-bottom:.4rem">No job selected yet</div>
+    <div style="font-size:13px;color:var(--ink3)">Go to <strong>Live Jobs</strong> → click <strong>Tailor CV →</strong> on any job</div>
+    <button class="btn btn-p btn-sm" style="margin-top:1rem" onclick="goTab('jobs')">Go to Live Jobs →</button>
+  </div>
+  <div id="tailor-loading" style="display:none;text-align:center;padding:2.5rem 0">
+    <div class="dots"><span></span><span></span><span></span></div>
+    <p style="margin-top:11px;font-size:13px;color:var(--ink3)" id="tstatus">Writing ATS CV…</p>
+    <div style="margin-top:10px;max-width:460px;margin-left:auto;margin-right:auto">
+      <div class="stream-label"><div class="scursor"></div> Streaming from AI…</div>
+      <div class="outbox" id="tailor-stream-box" style="max-height:120px;font-size:11px"></div>
+    </div>
+  </div>
+  <div id="tailor-results" style="display:none">
+    <div class="card">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:11px">
+        <div>
+          <div style="font-size:17px;font-weight:800" id="tjob-title"></div>
+          <div style="font-size:12.5px;color:var(--ink3);margin-top:3px" id="tjob-meta"></div>
+          <div style="font-size:12.5px;color:var(--ink3)" id="tjob-hr"></div>
+          <div style="font-size:12.5px;color:var(--ink3)" id="tjob-addr"></div>
+          <div style="font-size:14px;font-weight:800;color:var(--amber);margin-top:5px" id="tjob-salary"></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">
+          <div style="display:flex;gap:6px;flex-wrap:wrap">
+            <span class="badge bg-g" id="tmatch"></span>
+            <span class="badge bg-b" id="tats-badge"></span>
+          </div>
+          <a id="tapply-link" href="#" target="_blank" class="btn btn-p btn-sm" style="margin-top:3px">Apply on Portal ↗</a>
+        </div>
+      </div>
+      <div class="hr"></div>
+      <span class="lbl" style="margin-bottom:5px">Keyword match</span>
+      <div id="tkw"></div>
+    </div>
+    <div class="dl-bar">
+      <div class="dl-bar-h">📥 Download tailored documents</div>
+      <div class="dl-row">
+        <button class="btn btn-doc btn-sm" onclick="downloadWord('cv')">⬇ ATS CV (.doc)</button>
+        <button class="btn btn-doc btn-sm" onclick="downloadWord('cover')">⬇ Cover Letter (.doc)</button>
+        <button class="btn btn-pdf btn-sm" onclick="downloadPDF()">⬇ ATS CV (.pdf)</button>
+        <button class="btn btn-dl btn-sm" onclick="downloadTxt('cv')">⬇ ATS CV (.txt)</button>
+        <button class="btn btn-dl btn-sm" onclick="downloadTxt('cover')">⬇ Cover Letter (.txt)</button>
+        <button class="btn btn-o btn-sm" onclick="downloadTxt('tips')">⬇ Interview Guide</button>
+        <button class="btn btn-o btn-sm" onclick="copyOut()">📋 Copy</button>
+      </div>
+      <div id="dl-status"></div>
+    </div>
+    <div class="itabs">
+      <button class="itab active" id="ot-cv" onclick="swOut('cv')">ATS CV</button>
+      <button class="itab" id="ot-cover" onclick="swOut('cover')">Cover Letter</button>
+      <button class="itab" id="ot-tips" onclick="swOut('tips')">Interview Guide</button>
+    </div>
+    <div id="oo-cv" class="outbox"></div>
+    <div id="oo-cover" class="outbox" style="display:none"></div>
+    <div id="oo-tips" class="outbox" style="display:none"></div>
+    <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:.75rem;flex-wrap:wrap">
+      <button class="btn btn-o btn-sm" onclick="goTab('jobs')">← Back to Jobs</button>
+      <button class="btn btn-doc btn-sm" onclick="downloadWord('cv')">⬇ Download Word CV</button>
+    </div>
+  </div>
+</div>
+
+</div><!-- .app -->
+
+<!-- FIX OPTIONS MODAL -->
+<div class="fix-modal-overlay" id="fix-modal-overlay" style="display:none" onclick="closeFixModal(event)">
+  <div class="fix-modal" id="fix-modal">
+    <div class="fix-modal-title" id="fix-modal-title">Improvement Options</div>
+    <div class="fix-modal-sub" id="fix-modal-sub">AI has generated 2 options. Pick the best one and click Apply.</div>
+    <div id="fix-modal-body">
+      <div class="fix-modal-loading">
+        <div class="dots"><span></span><span></span><span></span></div>
+        <div style="margin-top:.65rem;font-size:13px">Generating 2 options…</div>
+      </div>
+    </div>
+    <div id="fix-modal-footer" style="display:none;margin-top:1rem;display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap">
+      <button class="btn btn-o btn-sm" onclick="closeFixModal()">Cancel</button>
+      <button class="btn btn-b btn-sm" id="fix-apply-btn" onclick="applySelectedFix()" disabled>Apply Selected →</button>
+    </div>
+  </div>
+</div>
+
+<!-- HIDDEN COMPAT -->
+<div style="display:none">
+  <div id="stream-preview"></div><div id="portal-links"></div>
+  <div id="jobs-loading-dummy"></div><div id="jobs-list-dummy"></div>
+  <span id="ai-mode-pill"></span><span id="key-status"></span>
+  <div id="status-dot"></div><span id="status-text"></span>
+</div>
+
+<script>
+/* ══ STATE ══ */
+var cvText='',targetRole='',userCity='',timeHrs=48;
+var scoreData=null,jobsList=[],selectedJob=null;
+var improvements=[],summaryOptions=[],selectedSumIdx=0;
+var tailoredData=null,currentMarket='all';
+var ollamaConnected=false,availableModels=[],connectTimer=null,aiMode='anthropic';
+
+/* ══ MARKET CONFIG ══ */
+var MKT={
+  pk:{label:'Pakistan',flag:'🇵🇰',defCity:'Karachi',cur:'PKR',salRange:'Competitive',
+    topCos:['Systems Limited','NetSol Technologies','TRG Pakistan','PTCL','HBL','UBL','Engro Corporation','Lucky Cement','Inbox Business Technologies','Arif Habib Group'],
+    cities:['Karachi','Lahore','Islamabad','Rawalpindi','Faisalabad','Multan','Peshawar','Quetta','Sialkot','Hyderabad']},
+  ae:{label:'UAE/Dubai',flag:'🇦🇪',defCity:'Dubai',cur:'AED',salRange:'Competitive',
+    topCos:['Emirates Group','DP World','Careem','Amazon UAE','DAMAC Properties','Etisalat','Majid Al Futtaim','ADNOC','Emaar Properties','First Abu Dhabi Bank'],
+    cities:['Dubai','Abu Dhabi','Sharjah','Ajman','Ras Al Khaimah','Fujairah','Al Ain']},
+  sa:{label:'Saudi Arabia',flag:'🇸🇦',defCity:'Riyadh',cur:'SAR',salRange:'Competitive',
+    topCos:['Saudi Aramco','SABIC','STC','Al Rajhi Bank','NCB','Olayan Group','Accenture KSA','PwC Saudi Arabia','McKinsey KSA','NEOM'],
+    cities:['Riyadh','Jeddah','Dammam','Mecca','Medina','Khobar','Tabuk','Abha','Najran','Jizan']},
+  us:{label:'United States',flag:'🇺🇸',defCity:'New York',cur:'USD',salRange:'Competitive',
+    topCos:['Google','Microsoft','Amazon','Apple','Meta','Tesla','JPMorgan','Goldman Sachs','Salesforce','IBM','Deloitte','PwC','Accenture','McKinsey','BCG'],
+    cities:['New York','Los Angeles','Chicago','Houston','Phoenix','Philadelphia','San Antonio','San Diego','Dallas','San Jose','Austin','Jacksonville','San Francisco','Seattle','Denver','Boston','Washington DC','Nashville','Las Vegas','Miami']},
+  ca:{label:'Canada',flag:'🇨🇦',defCity:'Toronto',cur:'CAD',salRange:'Competitive',
+    topCos:['Shopify','RBC','TD Bank','Scotiabank','CIBC','Bell Canada','Rogers','Telus','Canadian Tire','Loblaw','Sun Life','Manulife','CGI Group','OpenText','Bombardier'],
+    cities:['Toronto','Vancouver','Montreal','Calgary','Edmonton','Ottawa','Winnipeg','Quebec City','Hamilton','Kitchener','London','Halifax','Victoria','Saskatoon','Regina']},
+};
+
+/* ══ PORTALS ══ */
+var PORTALS={
+  pk:[
+    {name:"Rozee.pk",dot:"#F97316",url:function(q,c){return'https://www.rozee.pk/job/jsearch/q/'+q+(c?'/fpn/'+c:'');}},
+    {name:"Mustakbil.com",dot:"#22C55E",url:function(q,c){return'https://www.mustakbil.com/jobs/search?countryid=162&keywords='+q+(c?'&city='+c:'');}},
+    {name:"LinkedIn PK",dot:"#0A66C2",url:function(q,c){return'https://www.linkedin.com/jobs/search/?keywords='+q+'&location='+(c?c:'Pakistan')+'&f_TPR=r86400';}},
+    {name:"Indeed PK",dot:"#003A9B",url:function(q,c){return'https://pk.indeed.com/jobs?q='+q+(c?'&l='+c:'')+'&fromage=2';}},
+    {name:"Google Jobs",dot:"#EA4335",url:function(q,c){return'https://www.google.com/search?q='+encodeURIComponent(decodeURIComponent(q))+(c?'+'+c:'+Pakistan')+'&udm=8';}},
+  ],
+  ae:[
+    {name:"Bayt.com UAE",dot:"#0DB14B",url:function(q,c){return'https://www.bayt.com/en/uae/jobs/?q='+q;}},
+    {name:"GulfTalent",dot:"#F59E0B",url:function(q,c){return'https://www.gulftalent.com/uae/jobs/search?query='+q+(c?'&location='+c:'');}},
+    {name:"LinkedIn UAE",dot:"#0A66C2",url:function(q,c){return'https://www.linkedin.com/jobs/search/?keywords='+q+'&location='+(c?c:'United+Arab+Emirates')+'&f_TPR=r86400';}},
+    {name:"NaukriGulf UAE",dot:"#EF4444",url:function(q,c){return'https://www.naukrigulf.com/jobs-in-uae?title='+q+(c?'&location='+c:'');}},
+    {name:"Google Jobs UAE",dot:"#EA4335",url:function(q,c){return'https://www.google.com/search?q='+encodeURIComponent(decodeURIComponent(q))+(c?'+'+c:'+Dubai+UAE')+'&udm=8';}},
+  ],
+  sa:[
+    {name:"Bayt.com KSA",dot:"#0DB14B",url:function(q,c){return'https://www.bayt.com/en/saudi-arabia/jobs/?q='+q;}},
+    {name:"GulfTalent KSA",dot:"#F59E0B",url:function(q,c){return'https://www.gulftalent.com/saudi-arabia/jobs/search?query='+q+(c?'&location='+c:'');}},
+    {name:"LinkedIn KSA",dot:"#0A66C2",url:function(q,c){return'https://www.linkedin.com/jobs/search/?keywords='+q+'&location='+(c?c:'Saudi+Arabia')+'&f_TPR=r86400';}},
+    {name:"NaukriGulf KSA",dot:"#EF4444",url:function(q,c){return'https://www.naukrigulf.com/jobs-in-saudi-arabia?title='+q+(c?'&location='+c:'');}},
+    {name:"Google Jobs KSA",dot:"#EA4335",url:function(q,c){return'https://www.google.com/search?q='+encodeURIComponent(decodeURIComponent(q))+(c?'+'+c:'+Riyadh+Saudi+Arabia')+'&udm=8';}},
+  ],
+  us:[
+    {name:"LinkedIn US",dot:"#0A66C2",url:function(q,c){return'https://www.linkedin.com/jobs/search/?keywords='+q+'&location='+(c?c:'United+States')+'&f_TPR=r86400';}},
+    {name:"Indeed US",dot:"#003A9B",url:function(q,c){return'https://www.indeed.com/jobs?q='+q+(c?'&l='+c:'')+'&fromage=2';}},
+    {name:"Glassdoor",dot:"#0CAA41",url:function(q,c){return'https://www.glassdoor.com/Job/jobs.htm?suggestCount=0&suggestChosen=false&clickSource=searchBtn&typedKeyword='+q+(c?'&sc.keyword='+q+','+c:'');}},
+    {name:"ZipRecruiter",dot:"#1B4BFF",url:function(q,c){return'https://www.ziprecruiter.com/jobs-search?search='+q+(c?'&location='+c:'');}},
+    {name:"Google Jobs US",dot:"#EA4335",url:function(q,c){return'https://www.google.com/search?q='+encodeURIComponent(decodeURIComponent(q))+(c?'+'+c:'+United+States')+'&udm=8';}},
+  ],
+  ca:[
+    {name:"LinkedIn Canada",dot:"#0A66C2",url:function(q,c){return'https://www.linkedin.com/jobs/search/?keywords='+q+'&location='+(c?c:'Canada')+'&f_TPR=r86400';}},
+    {name:"Indeed Canada",dot:"#003A9B",url:function(q,c){return'https://ca.indeed.com/jobs?q='+q+(c?'&l='+c:'')+'&fromage=2';}},
+    {name:"Workopolis",dot:"#0CAA41",url:function(q,c){return'https://www.workopolis.com/jobsearch/find-jobs?ak='+q+(c?'&l='+c:'');}},
+    {name:"Monster CA",dot:"#6600CC",url:function(q,c){return'https://www.monster.ca/jobs/search/?q='+q+(c?'&where='+c:'');}},
+    {name:"Google Jobs CA",dot:"#EA4335",url:function(q,c){return'https://www.google.com/search?q='+encodeURIComponent(decodeURIComponent(q))+(c?'+'+c:'+Canada')+'&udm=8';}},
+  ]
+};
+
+/* ══ PDF.js ══ */
+if(typeof pdfjsLib!=='undefined'){
+  pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+}
+
+/* ══ PORTAL CARD RENDERER ══ */
+function renderPortalCards(){
+  var kw=(document.getElementById('jsearch').value||'').trim()||targetRole;
+  var city=getCityValue()||(document.getElementById('jcity-hero')&&document.getElementById('jcity-hero').value)||'';
+  var grid=document.getElementById('portal-job-grid');
+  if(!grid)return;
+  var markets=currentMarket==='all'?['pk','ae','sa','us','ca']:[currentMarket];
+  var cards=[];var seen={};
+  markets.forEach(function(mk){
+    var mktObj=MKT[mk]||{flag:'🌐',label:mk,defCity:''};
+    (PORTALS[mk]||[]).forEach(function(p){
+      var key=p.name+mk;if(seen[key])return;seen[key]=true;
+      var displayCity=city||(mktObj.defCity)||'';
+      var url=p.url(encodeURIComponent(kw||'jobs'),encodeURIComponent(displayCity));
+      cards.push(
+        '<a href="'+url+'" target="_blank" class="portal-jcard">'
+        +'<div class="pjc-portal"><span class="pjc-portal-dot" style="background:'+p.dot+'"></span>'
+        +'<span class="pjc-portal-name">'+p.name+'</span>'
+        +'<span style="margin-left:auto;font-size:11px">'+mktObj.flag+'</span></div>'
+        +'<div class="pjc-title">'+(kw?escHtml(kw):'Browse jobs')+(displayCity?' in '+escHtml(displayCity):'')+'</div>'
+        +'<div class="pjc-city">📍 '+(displayCity||mktObj.label||mk)+'</div>'
+        +'<div class="pjc-arrow">Open on '+p.name+' ↗</div>'
+        +'</a>'
+      );
+    });
+  });
+  grid.innerHTML=cards.join('');
+  if(kw){var meta=document.getElementById('jobs-meta');if(meta){meta.textContent=cards.length+' portals for "'+kw+'"'+(city?' in '+city:'');meta.classList.add('show');}}
+}
+
+function syncHeroCity(){
+  var h=document.getElementById('jcity-hero');
+  var i=document.getElementById('jcity');
+  if(h&&i)i.value=h.value;
+  renderPortalCards();liveUpdatePortals();
+}
+
+function setPopSearch(term){
+  var inp=document.getElementById('jsearch');
+  var hero=document.getElementById('jcity-hero');
+  if(inp){inp.value=term;renderPortalCards();liveUpdatePortals();}
+}
+
+
+/* ══ NAVIGATION ══ */
+function goTab(t){
+  var secMap={upload:'upload',ats:'ats',score:'score',jobs:'jobs',output:'output'};
+  Object.keys(secMap).forEach(function(k){
+    var sec=document.getElementById('sec-'+secMap[k]);
+    var wfnav=document.getElementById('tab-'+k);
+    var active=k===t||secMap[k]===t;
+    if(sec)sec.classList.toggle('active',active);
+    if(wfnav)wfnav.classList.toggle('active',active);
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ══ COUNTRY + CITY DROPDOWNS ══ */
+var CITIES={
+  pk:['All cities','Karachi','Lahore','Islamabad','Rawalpindi','Faisalabad','Multan','Peshawar','Quetta','Sialkot','Hyderabad'],
+  ae:['All cities','Dubai','Abu Dhabi','Sharjah','Ajman','Ras Al Khaimah','Fujairah','Al Ain'],
+  sa:['All cities','Riyadh','Jeddah','Dammam','Mecca','Medina','Khobar','Tabuk','Abha'],
+  us:['All cities','New York','Los Angeles','Chicago','Houston','Phoenix','Philadelphia','San Antonio','San Diego','Dallas','San Jose','Austin','San Francisco','Seattle','Denver','Boston','Washington DC','Nashville','Las Vegas','Miami','Atlanta','Portland','Minneapolis','Detroit','Charlotte'],
+  ca:['All cities','Toronto','Vancouver','Montreal','Calgary','Edmonton','Ottawa','Winnipeg','Quebec City','Hamilton','Kitchener','London','Halifax','Victoria','Saskatoon','Regina']
+};
+function onCountryChange(){
+  var country=document.getElementById('jcountry').value;
+  var citySelEl=document.getElementById('jcity-sel');
+  var cityInp=document.getElementById('jcity');
+  citySelEl.style.display='block';
+  citySelEl.innerHTML='';
+  var cities=country&&CITIES[country]?CITIES[country]:['All cities'];
+  cities.forEach(function(c){
+    var opt=document.createElement('option');
+    opt.value=c==='All cities'?'':c;opt.textContent=c;
+    citySelEl.appendChild(opt);
+  });
+  // sync market tab
+  if(country)setMarket(country);
+  else setMarket('all');
+  onCityChange();
+}
+function onCityChange(){
+  var citySelEl=document.getElementById('jcity-sel');
+  var cityInp=document.getElementById('jcity');
+  var val=citySelEl.value;
+  cityInp.value=val;
+  liveUpdatePortals();
+}
+function getCityValue(){
+  var sel=document.getElementById('jcity-sel');
+  var inp=document.getElementById('jcity');
+  return (sel&&sel.value)?sel.value:(inp&&inp.value)||'';
+}
+
+/* ══ AI PANEL ══ */
+function togglePanel(){document.getElementById('ai-panel').classList.toggle('open');}
+document.addEventListener('click',function(e){
+  var p=document.getElementById('ai-panel'),chip=document.querySelector('.ai-pill');
+  if(p&&chip&&!p.contains(e.target)&&!chip.contains(e.target))p.classList.remove('open');
+});
+
+/* ══ OLLAMA ══ */
+function getOllamaBase(){return(document.getElementById('ollama-url').value||'http://localhost:11434').replace(/\/$/,'');}
+function getModel(){var s=document.getElementById('model-sel');return s.value||availableModels[0]||'llama3';}
+function getApiKey(){return(document.getElementById('anthropic-key').value||localStorage.getItem('anthropic_key')||'').trim();}
+function saveModel(){localStorage.setItem('cv_model',getModel());}
+function setDot(state){var d=document.getElementById('ai-dot');if(d)d.className='ai-dot '+(state==='ok'?'ok':state==='err'?'err':'spin');}
+
+async function connectOllama(){
+  setDot('spin');
+  var lbl=document.getElementById('ai-lbl'),det=document.getElementById('ai-status-txt');
+  if(lbl)lbl.textContent='Connecting…';
+  try{
+    var res=await fetch(getOllamaBase()+'/api/tags',{signal:AbortSignal.timeout(5000)});
+    if(!res.ok)throw new Error('HTTP '+res.status);
+    var data=await res.json();
+    var models=(data.models||[]).map(function(m){return m.name;});
+    if(!models.length)throw new Error('No models. Run: ollama pull llama3');
+    availableModels=models;
+    var sel=document.getElementById('model-sel');
+    sel.innerHTML=models.map(function(m){return'<option value="'+m+'">'+m+'</option>';}).join('');
+    var sv=localStorage.getItem('cv_model');if(sv&&models.includes(sv))sel.value=sv;
+    setDot('ok');if(lbl)lbl.textContent=models[0];
+    if(det)det.textContent='Connected — '+models.length+' models available.';
+    ollamaConnected=true;aiMode='ollama';
+    document.getElementById('ollama-notice').style.display='none';
+  }catch(e){
+    ollamaConnected=false;aiMode='anthropic';
+    setDot(getApiKey()?'ok':'err');
+    if(lbl)lbl.textContent=getApiKey()?'Claude API':'Not connected';
+    if(det)det.textContent=e.message.includes('403')||e.message.includes('CORS')
+      ?'CORS fix: run OLLAMA_ORIGINS=* ollama serve'
+      :'Ollama not found. Add Claude API key for fallback.';
+  }
+}
+function scheduleConnect(){clearTimeout(connectTimer);connectTimer=setTimeout(connectOllama,900);}
+
+/* ══ AI CALL ══ */
+async function callOllama(prompt,streamElId){
+  return(aiMode==='ollama'&&ollamaConnected)?_ollamaDirect(prompt,streamElId):_anthropic(prompt,streamElId);
+}
+async function _ollamaDirect(prompt,streamElId){
+  var base=getOllamaBase(),model=getModel();
+  var sel=streamElId?document.getElementById(streamElId):null;
+  if(sel)sel.textContent='';
+  var res=await fetch(base+'/api/generate',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({model:model,prompt:prompt,stream:true,options:{temperature:0.2,num_predict:4096}})});
+  if(!res.ok){var et=await res.text();throw new Error('Ollama '+res.status+': '+et);}
+  var reader=res.body.getReader(),decoder=new TextDecoder(),full='';
+  while(true){
+    var tmp=await reader.read();if(tmp.done)break;
+    var lines=decoder.decode(tmp.value,{stream:true}).split('\n').filter(Boolean);
+    for(var i=0;i<lines.length;i++){
+      try{var obj=JSON.parse(lines[i]);
+        if(obj.response){full+=obj.response;if(sel){sel.textContent=full.slice(-600);sel.scrollTop=sel.scrollHeight;}}
+        if(obj.done)break;
+      }catch(ex){}
+    }
+  }
+  return full;
+}
+async function _anthropic(prompt,streamElId){
+  var sel=streamElId?document.getElementById(streamElId):null;
+  if(sel)sel.textContent='Generating…';
+  var headers={'Content-Type':'application/json','anthropic-dangerous-direct-browser-access':'true'};
+  var key=getApiKey();if(key)headers['x-api-key']=key;
+  var res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:headers,
+    body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:4000,messages:[{role:'user',content:prompt}]})});
+  if(!res.ok){var et=await res.text();
+    if(res.status===401)throw new Error('Add Claude API key in AI panel (top-right chip).');
+    throw new Error('Claude API '+res.status);}
+  var d=await res.json();if(d.error)throw new Error(d.error.message);
+  var text=d.content.map(function(c){return c.text||'';}).join('');
+  if(sel)sel.textContent=text.slice(-600);
+  return text;
+}
+function pJSON(raw){
+  raw=raw.replace(/```json|```/g,'').trim();
+  var s=raw.indexOf('{'),e=raw.lastIndexOf('}');
+  if(s>=0&&e>=0)raw=raw.slice(s,e+1);
+  return JSON.parse(raw);
+}
+function pArr(raw){
+  raw=raw.replace(/```json|```/g,'').trim();
+  var s=raw.indexOf('['),e=raw.lastIndexOf(']');
+  if(s>=0&&e>=0)raw=raw.slice(s,e+1);
+  return JSON.parse(raw);
+}
+
+/* ══ FILE HANDLING ══ */
+var dz=document.getElementById('dz');
+dz.addEventListener('dragover',function(e){e.preventDefault();dz.classList.add('drag')});
+dz.addEventListener('dragleave',function(){dz.classList.remove('drag')});
+dz.addEventListener('drop',function(e){e.preventDefault();dz.classList.remove('drag');var f=e.dataTransfer.files[0];if(f)processFile(f);});
+function handleFile(e){var f=e.target.files[0];if(f)processFile(f);}
+function processFile(file){
+  var ext=file.name.split('.').pop().toLowerCase();
+  document.getElementById('file-name').textContent=file.name;
+  if(ext==='txt'){var r=new FileReader();r.onload=function(ev){setCVText(ev.target.result);};r.readAsText(file);}
+  else if(ext==='pdf')extractPDF(file);
+  else if(ext==='docx')extractDOCX(file);
+  else alert('Upload PDF, DOCX, or TXT only.');
+}
+function setCVText(text){
+  cvText=text.trim();
+  document.getElementById('cv-text').value=cvText;
+  document.getElementById('file-ok').classList.add('show');
+  document.getElementById('cv-preview').textContent=cvText.slice(0,700)+(cvText.length>700?'\n\n[… full CV loaded]':'');
+  document.getElementById('cv-preview').classList.add('show');
+  document.getElementById('cv-actions').style.display='block';
+  dz.style.borderColor='var(--green)';
+}
+function onCVPaste(){
+  var t=document.getElementById('cv-text').value.trim();
+  if(t.length>50){cvText=t;document.getElementById('cv-preview').textContent=cvText.slice(0,700);document.getElementById('cv-actions').style.display='block';}
+}
+function togglePreview(){document.getElementById('cv-preview').classList.toggle('show');}
+async function extractPDF(file){
+  try{var ab=await file.arrayBuffer();var pdf=await pdfjsLib.getDocument({data:ab}).promise;var full='';for(var i=1;i<=pdf.numPages;i++){var pg=await pdf.getPage(i);var tc=await pg.getTextContent();full+=tc.items.map(function(item){return item.str;}).join(' ')+'\n';}setCVText(full.trim());}
+  catch(err){alert('Could not read PDF. Please paste text instead.');}
+}
+async function extractDOCX(file){
+  try{var ab=await file.arrayBuffer();var r=await mammoth.extractRawText({arrayBuffer:ab});setCVText(r.value.trim());}
+  catch(err){alert('Could not read DOCX. Please paste text instead.');}
+}
+
+/* ══ ATS TEMPLATE ══ */
+function applyATSTemplate(){
+  var role=document.getElementById('target-role').value||'[Your Target Role]';
+  var city=document.getElementById('user-city').value||'[Your City]';
+  var tpl=['[YOUR FULL NAME]','Email: your@email.com  |  Phone: +XX-XXX-XXXXXXX  |  Location: '+city,'LinkedIn: linkedin.com/in/yourname','','='.repeat(55),'PROFESSIONAL SUMMARY','='.repeat(55),'Results-driven '+role+' with [X]+ years of expertise in [skill 1], [skill 2], and [skill 3]. Proven record of [quantified achievement]. Seeking a '+role+' role in '+city+'.','','='.repeat(55),'PROFESSIONAL EXPERIENCE','='.repeat(55),'','[Job Title] | [Company] | '+city+' | [YYYY – Present]','- [Action verb + task + metric e.g. Led team of 8 delivering PKR 15M project 3 weeks early]','- [Achievement with metric]','- [Achievement with metric]','','='.repeat(55),'CORE COMPETENCIES','='.repeat(55),'[Skill 1], [Skill 2], [Skill 3], [Tool 1], [Tool 2]','','='.repeat(55),'EDUCATION','='.repeat(55),'[Degree] | [University] | [Year]','','='.repeat(55),'CERTIFICATIONS','='.repeat(55),'- [Certificate] — [Body] ([Year])'].join('\n');
+  document.getElementById('cv-text').value=tpl;cvText=tpl;
+  document.getElementById('cv-preview').textContent=tpl.slice(0,600);
+  document.getElementById('cv-actions').style.display='block';
+  document.getElementById('cv-preview').classList.add('show');
+  var n=document.getElementById('tpl-notice');n.style.display='block';n.textContent='✓ ATS template applied. Fill in your real details then click Analyze CV.';
+  goTab('upload');
+}
+
+/* ══ CONVERT TO ATS ══ */
+async function convertToATS(){
+  var raw=document.getElementById('cv-text').value.trim()||cvText;
+  if(!raw||raw.length<50){alert('Upload or paste your CV first.');return;}
+  var role=document.getElementById('target-role').value||'Professional';
+  var prev=document.getElementById('cv-preview');prev.textContent='Converting…';prev.classList.add('show');
+  try{
+    var result=await callOllama('Reformat this CV into clean ATS plain text for "'+role+'".\n6 sections with === dividers:\n1.[NAME]\n  Email | Phone | LinkedIn | Location\n2.=== PROFESSIONAL SUMMARY ===\n  3 sentences with ATS keywords\n3.=== PROFESSIONAL EXPERIENCE ===\n  Bullets: Action verb + task + metric\n4.=== CORE COMPETENCIES ===\n  keywords\n5.=== EDUCATION ===\n6.=== CERTIFICATIONS ===\n\nPreserve ALL info. Return ONLY formatted CV text.\n\nCV:\n'+raw.slice(0,4000),'cv-preview');
+    cvText=result.trim();document.getElementById('cv-text').value=cvText;
+    var n=document.getElementById('tpl-notice');n.style.display='block';n.textContent='✓ Converted to ATS format.';n.className='notice n-ok';
+  }catch(e){prev.textContent=raw.slice(0,700);alert('Conversion failed: '+e.message);}
+}
+
+/* ══ ATS SCORE ══ */
+async function doScore(){
+  cvText=document.getElementById('cv-text').value.trim();
+  targetRole=document.getElementById('target-role').value.trim();
+  userCity=document.getElementById('user-city').value.trim();
+  if(!cvText){alert('Upload or paste your CV first.');return;}
+  if(!targetRole){alert('Enter your target job role.');return;}
+  goTab('score');
+  document.getElementById('score-loading').style.display='block';
+  document.getElementById('score-results').style.display='none';
+  document.getElementById('score-model-used').textContent=aiMode==='ollama'?getModel():'Claude';
+  var msgs=['Parsing CV…','Scoring ATS compliance…','Finding improvements…','Writing 3 summaries…'];
+  var si=0;var iv=setInterval(function(){if(si<msgs.length)document.getElementById('score-status').textContent=msgs[si++];},1800);
+
+  var prompt='ATS CV evaluator for Pakistan/UAE/KSA market. Role:"'+targetRole+'" City:"'+userCity+'"\nBands: Weak 38-59 | Average 60-74 | Good 75-84 | Excellent 85-95\nScore based ONLY on actual CV content.\nReturn ONLY valid JSON (no markdown):\n{"overall":72,"impact":68,"ats":76,"keywords":64,"verdict":"Specific verdict based on actual CV","band":"Band label","sections":[{"name":"Contact & Header","score":70,"note":"observation"},{"name":"Professional Summary","score":58,"note":"observation"},{"name":"Work Experience","score":76,"note":"observation"},{"name":"Core Skills","score":70,"note":"observation"},{"name":"Education","score":84,"note":"observation"},{"name":"ATS Formatting","score":74,"note":"observation"}],"improvements":[{"id":"i1","priority":"high","title":"Title","desc":"Desc based on actual CV","type":"linkedin","suggestion":"Fix"},{"id":"i2","priority":"high","title":"Title","desc":"Desc","type":"summary","suggestion":"Fix"},{"id":"i3","priority":"med","title":"Title","desc":"Desc","type":"edit","suggestion":"Fix"},{"id":"i4","priority":"low","title":"Title","desc":"Desc","type":"edit","suggestion":"Fix"}],"summaryOptions":[{"label":"Results-Focused","text":"3 sentences for '+targetRole+' emphasising achievements"},{"label":"Skills-Led","text":"3 sentences for '+targetRole+' emphasising technical expertise"},{"label":"Leadership","text":"3 sentences for '+targetRole+' emphasising leadership"}]}\n\nCV:\n'+cvText.slice(0,2800);
+
+  try{
+    var r=await callOllama(prompt,'score-stream-box');
+    clearInterval(iv);
+    scoreData=pJSON(r);
+    renderScore(scoreData);
+  }catch(e){
+    clearInterval(iv);scoreData=defaultScore();renderScore(scoreData);
+  }
+}
+
+function defaultScore(){
+  return{overall:70,impact:65,ats:73,keywords:62,verdict:'Good foundation — improve keywords and add metrics.',band:'Average — improvements needed',
+    sections:[{name:'Contact & Header',score:68,note:'Add LinkedIn URL'},{name:'Professional Summary',score:56,note:'Too generic — needs '+targetRole+' keywords'},{name:'Work Experience',score:75,note:'Add measurable metrics'},{name:'Core Skills',score:72,note:'Mirror job description keywords'},{name:'Education',score:84,note:'Complete'},{name:'ATS Formatting',score:72,note:'Add clear section headers'}],
+    improvements:[{id:'i1',priority:'high',title:'Add LinkedIn URL',desc:'Missing LinkedIn costs 5-8 ATS points.',type:'linkedin',suggestion:'Add linkedin.com/in/yourname to header.'},{id:'i2',priority:'high',title:'Strengthen summary',desc:'Summary lacks '+targetRole+' keywords.',type:'summary',suggestion:'Use exact keywords from job descriptions.'},{id:'i3',priority:'med',title:'Add metrics',desc:'Add % and numbers to bullet points.',type:'edit',suggestion:"e.g. 'Reduced downtime by 35%'"},{id:'i4',priority:'low',title:'Add certifications',desc:'No certifications listed.',type:'edit',suggestion:'Add relevant certs or in-progress courses.'}],
+    summaryOptions:[{label:'Results-Focused',text:'Results-driven '+targetRole+' with proven expertise delivering measurable outcomes in '+userCity+'. Track record of exceeding targets through strategic application of core skills. Committed to driving value in a '+targetRole+' role.'},{label:'Skills-Led',text:'Skilled '+targetRole+' with deep technical expertise across key industry tools. Proven ability to solve complex challenges in '+userCity+'. Passionate about continuous improvement.'},{label:'Leadership',text:'Experienced '+targetRole+' with strong leadership and a track record of building high-performing teams in '+userCity+'. Strategic thinker bridging technical expertise with business objectives.'}]
+  };
+}
+
+function renderScore(d){
+  document.getElementById('score-loading').style.display='none';
+  document.getElementById('score-results').style.display='block';
+  var sc=d.overall;
+  document.getElementById('sdisplay').textContent=sc;
+  document.getElementById('slabel').textContent=sc>=90?'Excellent CV':sc>=80?'Strong CV':sc>=65?'Good CV':'Needs Work';
+  document.getElementById('sverdict').textContent=d.verdict;
+  document.getElementById('sband').innerHTML='<span class="badge '+(sc>=80?'bg-g':sc>=65?'bg-a':'bg-r')+'">'+d.band+'</span>';
+  var arc=document.getElementById('sarc');
+  arc.setAttribute('stroke-dashoffset',219.9-(sc/100)*219.9);
+  arc.setAttribute('stroke',sc>=80?'#22C55E':sc>=65?'#F59E0B':'#EF4444');
+  document.getElementById('m1').textContent=d.impact;document.getElementById('m2').textContent=d.ats;document.getElementById('m3').textContent=d.keywords;
+  document.getElementById('section-scores').innerHTML=(d.sections||[]).map(function(s){
+    var c=s.score>=80?'#22C55E':s.score>=65?'#F59E0B':'#EF4444';
+    return'<div style="margin-bottom:9px"><div style="display:flex;justify-content:space-between;margin-bottom:2px"><span style="font-size:13px;font-weight:600">'+s.name+'</span><span style="font-size:13px;font-weight:700;color:'+c+'">'+s.score+'/100</span></div><div class="pbar"><div class="pfill" style="width:'+s.score+'%;background:'+c+'"></div></div><div style="font-size:12px;color:var(--ink3);margin-top:2px">'+s.note+'</div></div>';
+  }).join('');
+
+  // Calculate projected improvement
+  var boostMap={linkedin:8,summary:7,edit:5,cert:4};
+  var totalBoost=0;
+  (d.improvements||[]).forEach(function(imp){totalBoost+=boostMap[imp.type]||4;});
+  var projScore=Math.min(95,sc+totalBoost);
+  var projEl=document.getElementById('score-proj');
+  if(projEl&&totalBoost>0){
+    projEl.style.display='block';
+    document.getElementById('proj-current').textContent=sc;
+    document.getElementById('proj-after').textContent=projScore;
+    document.getElementById('proj-gain').textContent='+'+totalBoost+' pts';
+    document.getElementById('proj-bar').style.width=Math.min(100,projScore)+'%';
+  }
+
+  improvements=d.improvements||[];renderImprovements();
+  summaryOptions=d.summaryOptions||[];selectedSumIdx=0;
+  if(summaryOptions.length){
+    document.getElementById('summary-box').style.display='block';
+    document.getElementById('sum-opts').innerHTML=summaryOptions.map(function(opt,i){
+      return'<div class="sum-opt'+(i===0?' sel':'')+'" id="sumopt-'+i+'" onclick="selectSum('+i+')">'
+        +'<div class="sum-num">'+(i+1)+'</div>'
+        +'<div><div style="font-size:12px;font-weight:700;color:var(--blue);margin-bottom:2px">'+opt.label+'</div>'
+        +'<div style="font-size:12.5px;line-height:1.6;color:var(--ink)">'+opt.text+'</div></div>'
+        +'</div>';
+    }).join('');
+  }
+  document.getElementById('cv-edit').value=cvText;
+  if(targetRole)document.getElementById('jsearch').value=targetRole;
+  if(userCity)document.getElementById('jcity').value=userCity;
+  document.getElementById('tab-score').classList.add('done');
+  liveUpdatePortals();
+}
+
+function selectSum(i){selectedSumIdx=i;document.querySelectorAll('.sum-opt').forEach(function(el,j){el.classList.toggle('sel',j===i);});}
+function applySummary(){
+  if(!summaryOptions.length)return;
+  var txt=summaryOptions[selectedSumIdx].text;
+  var cv=document.getElementById('cv-edit'),t=cv.value;
+  var rep=t.replace(/((?:PROFESSIONAL\s+SUMMARY|=+\s*PROFESSIONAL SUMMARY\s*=+)\s*\n)([\s\S]*?)(\n\s*={3,})/,function(m,h,old,next){return h+txt+'\n'+next;});
+  cv.value=rep===t?t+'\n\n=== PROFESSIONAL SUMMARY ===\n'+txt:rep;
+  cvText=cv.value;document.getElementById('summary-box').style.display='none';alert('Summary applied!');
+}
+function renderImprovements(){
+  var boostMap={linkedin:8,summary:7,edit:5,cert:4};
+  document.getElementById('improvements-list').innerHTML=(improvements||[]).map(function(imp){
+    var boost=boostMap[imp.type]||4;
+    var btnLabel=imp.type==='linkedin'?'Fix LinkedIn ↗':imp.type==='summary'?'Get Options →':'Get Options →';
+    return'<div class="imp '+(imp.priority==='high'?'high':imp.priority==='med'?'med':'low')+'" id="imp-'+imp.id+'">'
+      +'<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;flex-wrap:wrap">'
+      +'<div style="flex:1;min-width:0">'
+      +'<div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;flex-wrap:wrap">'
+      +'<span class="badge '+(imp.priority==='high'?'bg-r':imp.priority==='med'?'bg-a':'bg-g')+'">'+(imp.priority==='high'?'High':imp.priority==='med'?'Medium':'Low')+'</span>'
+      +'<span style="font-size:13.5px;font-weight:800;letter-spacing:-.2px">'+imp.title+'</span>'
+      +'<span class="boost-badge">+'+boost+' pts</span>'
+      +'</div>'
+      +'<div style="font-size:12.5px;color:var(--ink2);line-height:1.55;margin-bottom:4px">'+imp.desc+'</div>'
+      +'<div style="font-size:12px;color:var(--ink3);font-style:italic">Suggestion: '+imp.suggestion+'</div>'
+      +'</div>'
+      +'<div style="display:flex;gap:5px;flex-shrink:0;align-items:flex-start;flex-direction:column">'
+      +'<button class="apply-fix-btn" onclick="openFixModal(\''+imp.id+'\',\''+imp.type+'\')">'+btnLabel+'</button>'
+      +'<button class="btn btn-o btn-xs" style="width:100%;text-align:center" onclick="dismissFix(\''+imp.id+'\')">Done ✓</button>'
+      +'</div>'
+      +'</div>'
+      +'</div>';
+  }).join('');
+}
+
+function dismissFix(id){
+  var el=document.getElementById('imp-'+id);
+  if(el){el.style.opacity='.4';setTimeout(function(){el.remove();},300);}
+  improvements=improvements.filter(function(i){return i.id!==id;});
+}
+
+/* ── FIX MODAL — AI generates 2 concrete options ── */
+var fixModalImpId='';
+var fixModalOptions=[];
+var fixModalSelected=-1;
+
+async function openFixModal(impId, impType){
+  var imp=improvements.find(function(i){return i.id===impId;});
+  if(!imp)return;
+  fixModalImpId=impId;
+  fixModalOptions=[];
+  fixModalSelected=-1;
+
+  // LinkedIn fix — direct action, no modal needed
+  if(impType==='linkedin'){
+    goTab('score');
+    setTimeout(function(){
+      var el=document.getElementById('linkedin-url');
+      if(el){el.scrollIntoView({behavior:'smooth'});el.focus();}
+    },200);
+    return;
+  }
+
+  // Summary fix — scroll to summary options
+  if(impType==='summary'){
+    var sb=document.getElementById('summary-box');
+    if(sb){sb.style.display='block';sb.scrollIntoView({behavior:'smooth'});}
+    return;
+  }
+
+  // Edit / cert fix — open AI options modal
+  var overlay=document.getElementById('fix-modal-overlay');
+  var title=document.getElementById('fix-modal-title');
+  var sub=document.getElementById('fix-modal-sub');
+  var body=document.getElementById('fix-modal-body');
+  var footer=document.getElementById('fix-modal-footer');
+  var applyBtn=document.getElementById('fix-apply-btn');
+
+  title.textContent=imp.title;
+  sub.textContent='AI is generating 2 improved versions. Pick the best one.';
+  body.innerHTML='<div class="fix-modal-loading"><div class="dots"><span></span><span></span><span></span></div><div style="margin-top:.65rem;font-size:13px;color:var(--ink3)">Generating options…</div></div>';
+  footer.style.display='none';
+  applyBtn.disabled=true;
+  overlay.style.display='flex';
+  fixModalSelected=-1;
+
+  var workCV=document.getElementById('cv-edit').value||cvText||'';
+
+  // Prompt: generate 2 different concrete improvements for this specific CV section
+  var prompt='You are an ATS CV expert. The user has this CV and needs to fix: "'+imp.title+'".\n\n'
+    +'Problem: '+imp.desc+'\n'
+    +'Suggestion: '+imp.suggestion+'\n\n'
+    +'Current CV (relevant excerpt):\n'+workCV.slice(0,1800)+'\n\n'
+    +'Generate EXACTLY 2 different improved text options for this specific fix.\n'
+    +'Each option should be a complete, ready-to-paste replacement text for the relevant CV section.\n'
+    +'Option A should be concise and punchy.\n'
+    +'Option B should be more detailed and keyword-rich.\n\n'
+    +'Return ONLY valid JSON (no markdown):\n'
+    +'{"optionA":{"label":"Concise & Punchy","preview":"First 15 words of option A…","fullText":"Complete replacement text for this CV section, ready to copy"},"optionB":{"label":"Detailed & Keyword-Rich","preview":"First 15 words of option B…","fullText":"Complete replacement text — more detailed version with ATS keywords"}}';
+
+  try{
+    var r=await callOllama(prompt,null);
+    var d=pJSON(r);
+    fixModalOptions=[d.optionA,d.optionB];
+
+    body.innerHTML=
+      '<div id="fix-opt-0" class="fix-option" onclick="selectFixOpt(0)">'
+      +'<div class="fix-option-label"><span style="background:var(--ink);color:#fff;padding:1px 6px;border-radius:3px;font-size:10px">A</span> '+(d.optionA.label||'Option A')+'<span class="fix-score-gain">concise</span></div>'
+      +'<div class="fix-option-text">'+escHtml(d.optionA.fullText||d.optionA.preview||'')+'</div>'
+      +'</div>'
+      +'<div id="fix-opt-1" class="fix-option" onclick="selectFixOpt(1)">'
+      +'<div class="fix-option-label"><span style="background:var(--blue);color:#fff;padding:1px 6px;border-radius:3px;font-size:10px">B</span> '+(d.optionB.label||'Option B')+'<span class="fix-score-gain">keyword-rich</span></div>'
+      +'<div class="fix-option-text">'+escHtml(d.optionB.fullText||d.optionB.preview||'')+'</div>'
+      +'</div>';
+    footer.style.display='flex';
+  }catch(e){
+    // Fallback: generate 2 options manually based on suggestion
+    var shortFix=imp.suggestion;
+    var longFix=imp.suggestion+' This strengthens your ATS score by adding relevant keywords and measurable outcomes aligned to your target role.';
+    fixModalOptions=[
+      {label:'Concise Fix',fullText:shortFix},
+      {label:'Detailed Fix',fullText:longFix}
+    ];
+    body.innerHTML=
+      '<div id="fix-opt-0" class="fix-option" onclick="selectFixOpt(0)">'
+      +'<div class="fix-option-label"><span style="background:var(--ink);color:#fff;padding:1px 6px;border-radius:3px;font-size:10px">A</span> Concise Fix</div>'
+      +'<div class="fix-option-text">'+escHtml(shortFix)+'</div>'
+      +'</div>'
+      +'<div id="fix-opt-1" class="fix-option" onclick="selectFixOpt(1)">'
+      +'<div class="fix-option-label"><span style="background:var(--blue);color:#fff;padding:1px 6px;border-radius:3px;font-size:10px">B</span> Detailed Fix</div>'
+      +'<div class="fix-option-text">'+escHtml(longFix)+'</div>'
+      +'</div>';
+    footer.style.display='flex';
+  }
+}
+
+function escHtml(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+function selectFixOpt(idx){
+  fixModalSelected=idx;
+  document.querySelectorAll('.fix-option').forEach(function(el,i){
+    el.classList.toggle('selected',i===idx);
+  });
+  var applyBtn=document.getElementById('fix-apply-btn');
+  if(applyBtn)applyBtn.disabled=false;
+}
+
+function applySelectedFix(){
+  if(fixModalSelected<0||!fixModalOptions[fixModalSelected]){
+    alert('Please select an option first.');return;
+  }
+  var selectedText=fixModalOptions[fixModalSelected].fullText||fixModalOptions[fixModalSelected].preview||'';
+  if(!selectedText){alert('No text to apply.');return;}
+
+  // Paste into CV editor
+  var cv=document.getElementById('cv-edit');
+  if(!cv.value)cv.value=cvText||'';
+
+  // Find the relevant section and append/replace
+  var imp=improvements.find(function(i){return i.id===fixModalImpId;});
+  var inserted=false;
+
+  if(imp&&imp.type==='cert'){
+    // Add to certifications section
+    var lines=cv.value.split('\n');
+    var certIdx=-1;
+    lines.forEach(function(l,i){if(l.match(/CERTIF/i))certIdx=i;});
+    if(certIdx>-1){
+      lines.splice(certIdx+2,0,'- '+selectedText);
+      cv.value=lines.join('\n');inserted=true;
+    }
+  }
+  if(!inserted){
+    // Append to end of CV with a visible marker
+    cv.value=cv.value.trimEnd()+'\n\n[APPLIED FIX — '+( imp?imp.title:'Improvement')+']\n'+selectedText;
+  }
+  cvText=cv.value;
+
+  // Mark improvement as done
+  dismissFix(fixModalImpId);
+  closeFixModal();
+
+  // Show success and scroll to editor
+  goTab('score');
+  setTimeout(function(){
+    cv.scrollIntoView({behavior:'smooth'});
+    cv.focus();
+    // Flash the textarea border
+    cv.style.borderColor='var(--green)';
+    cv.style.boxShadow='0 0 0 3px var(--green4)';
+    setTimeout(function(){cv.style.borderColor='';cv.style.boxShadow='';},2500);
+  },300);
+
+  // Show rescore button
+  var n=document.getElementById('tpl-notice');
+  if(n){n.style.display='block';n.className='notice n-ok';n.innerHTML='✓ Fix applied to your CV. <button onclick="reScore()" class="btn btn-b btn-sm" style="margin-left:8px">Re-score now →</button>';}
+}
+
+function closeFixModal(e){
+  if(e&&e.target!==document.getElementById('fix-modal-overlay'))return;
+  document.getElementById('fix-modal-overlay').style.display='none';
+  fixModalSelected=-1;fixModalOptions=[];fixModalImpId='';
+}
+function addLinkedIn(){
+  var url=document.getElementById('linkedin-url').value.trim();
+  if(!url){alert('Enter LinkedIn URL first.');return;}
+  var cv=document.getElementById('cv-edit');var lines=cv.value.split('\n');var added=false;
+  for(var i=0;i<Math.min(6,lines.length);i++){
+    if(lines[i].toLowerCase().includes('@')||lines[i].toLowerCase().includes('email')){
+      if(!lines[i].toLowerCase().includes('linkedin')){lines[i]=lines[i]+' | LinkedIn: '+url;}added=true;break;
+    }
+  }
+  if(!added)lines.splice(1,0,'LinkedIn: '+url);
+  cv.value=lines.join('\n');cvText=cv.value;alert('LinkedIn added!');
+}
+async function scanLinkedIn(){
+  var url=document.getElementById('linkedin-url').value.trim();
+  if(!url||!url.includes('linkedin')){alert('Enter a valid LinkedIn URL first.');return;}
+  var box=document.getElementById('li-result');box.className='li-res show';box.innerHTML='<div style="color:var(--ink3)">Scanning…</div>';
+  try{
+    var r=await callOllama('CV:\n'+cvText.slice(0,800)+'\nLinkedIn: '+url+'\nReturn ONLY JSON: {"headline":"job title","skills":["s1","s2","s3","s4"],"summaryExtract":"first sentence","atsBoostPoints":7,"tips":["tip1","tip2"]}',null);
+    var d=pJSON(r);
+    box.innerHTML='<div style="background:var(--green-soft);border:1px solid rgba(34,197,94,.2);border-radius:var(--r8);padding:.65rem .85rem"><div style="font-size:12px;font-weight:700;color:var(--green);margin-bottom:.3rem">✓ Scanned: '+url+'</div><div style="font-size:12px">Headline: '+d.headline+'</div><div style="font-size:12px">Skills: '+(d.skills||[]).join(', ')+'</div><div style="font-size:12px;color:var(--green);font-weight:700">+'+d.atsBoostPoints+' ATS points from LinkedIn URL</div></div>';
+  }catch(e){box.innerHTML='<div class="notice n-warn">Could not scan. Still add the URL above.</div>';}
+}
+function applyAllFixes(){var li=document.getElementById('linkedin-url').value.trim();if(li)addLinkedIn();if(summaryOptions.length)applySummary();}
+function reScore(){cvText=document.getElementById('cv-edit').value;document.getElementById('cv-text').value=cvText;doScore();}
+
+/* ══ PORTALS ══ */
+function setMarket(m){
+  currentMarket=m;
+  document.querySelectorAll('.mkt-btn').forEach(function(b){b.classList.remove('active')});
+  var mb=document.getElementById('mkt-'+m);if(mb)mb.classList.add('active');
+  // sync country selector
+  var jc=document.getElementById('jcountry');
+  if(jc&&['pk','ae','sa','us','ca'].includes(m)){jc.value=m;onCountryChange();}
+  else if(jc&&m==='all'){jc.value='';onCountryChange();}
+  liveUpdatePortals();
+}
+function setTime(h){
+  timeHrs=h;
+  ['24','48','72'].forEach(function(x){
+    var el=document.getElementById('t'+x);
+    if(el)el.classList.toggle('active',parseInt(x)===h);
+  });
+}
+
+function liveUpdatePortals(){
+  var kw=(document.getElementById('jsearch').value||'').trim();
+  var city=getCityValue();
+  // Update legacy chips (hidden)
+  var chips=document.getElementById('portal-chips');
+  if(chips){
+    var markets=currentMarket==='all'?['pk','ae','sa','us','ca']:[currentMarket];
+    var html='';var seen={};
+    markets.forEach(function(mk){
+      (PORTALS[mk]||[]).forEach(function(p){
+        if(seen[p.name])return;seen[p.name]=true;
+        var url=kw?p.url(encodeURIComponent(kw),encodeURIComponent(city)):null;
+        html+='<a '+(url?'href="'+url+'" target="_blank"':'onclick="return false"')+' class="pchip'+(url?'':' off')+'">'
+          +'<span class="pc-dot" style="background:'+p.dot+'"></span>'+p.name+(url?' ↗':'')+'</a>';
+      });
+    });
+    chips.innerHTML=html;
+  }
+  // Always refresh portal card grid
+  renderPortalCards();
+}
+
+/* ══ FETCH JOBS — AI generates per market, separate call per market ══ */
+/* ══════════════════════════════════════════════════
+   REAL JOB SEARCH — n8n webhook (SerpAPI live data)
+   Webhook: https://maaz-kamran.app.n8n.cloud/webhook/job-search
+   Falls back to AI-generated listings if webhook unavailable
+══════════════════════════════════════════════════ */
+var N8N_WEBHOOK = 'https://maaz-kamran.app.n8n.cloud/webhook/job-search';
+
+async function fetchJobs(){
+  var search=(document.getElementById('jsearch').value||'').trim()||targetRole;
+  var city=getCityValue()||(document.getElementById('jcity-hero')&&document.getElementById('jcity-hero').value)||userCity||'';
+  if(!search){alert('Enter a job title first.');return;}
+  targetRole=search;if(city)userCity=city;
+  liveUpdatePortals();renderPortalCards();
+
+  document.getElementById('jobs-loading').style.display='block';
+  document.getElementById('jobs-list').innerHTML='';
+  document.getElementById('jobs-empty').style.display='none';
+  var meta=document.getElementById('jobs-meta');if(meta)meta.classList.remove('show');
+
+  // Build search query including city/country
+  var query=search+(city?' '+city:'');
+  var jstatus=document.getElementById('jstatus');
+  if(jstatus)jstatus.textContent='🔴 Fetching live jobs for "'+query+'" from real portals…';
+
+  try{
+    var res=await fetch(N8N_WEBHOOK,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({query:query,market:currentMarket,timeHrs:timeHrs})
+    });
+    if(!res.ok)throw new Error('Webhook HTTP '+res.status);
+    var data=await res.json();
+
+    // n8n may return array directly or wrapped object
+    var rawJobs=Array.isArray(data)?data:(data.jobs||data.results||data.data||[]);
+    if(!rawJobs.length)throw new Error('No results returned from search');
+
+    jobsList=normalizeJobs(rawJobs,search,city);
+    document.getElementById('jobs-loading').style.display='none';
+    renderJobs(jobsList,search,city,true);
+
+  }catch(e){
+    // Graceful fallback to AI-generated listings
+    if(jstatus)jstatus.textContent='⚠ Live search unavailable ('+e.message+') — generating AI sample listings…';
+
+    var markets=currentMarket==='all'
+      ?[{k:'pk',c:city||'Karachi'},{k:'ae',c:city||'Dubai'},{k:'sa',c:city||'Riyadh'},{k:'us',c:city||'New York'},{k:'ca',c:city||'Toronto'}]
+      :[{k:currentMarket,c:city||MKT[currentMarket].defCity}];
+
+    var allJobs=[];
+    for(var mi=0;mi<markets.length;mi++){
+      var mk=markets[mi];
+      if(jstatus)jstatus.textContent='[AI fallback '+(mi+1)+'/'+markets.length+'] Generating for '+mk.c+'…';
+      try{allJobs=allJobs.concat(await fetchMarketAI(search,mk.k,mk.c));}
+      catch(e2){allJobs=allJobs.concat(fallbackJobs(search,mk.k,mk.c));}
+    }
+    jobsList=allJobs;
+    document.getElementById('jobs-loading').style.display='none';
+    renderJobs(allJobs,search,city,false);
+  }
+}
+
+/* ══ Normalize raw n8n/SerpAPI job objects → internal format ══ */
+function normalizeJobs(rawJobs,search,city){
+  return rawJobs.map(function(j,i){
+    var loc=(j.location||city||'').toLowerCase();
+    var mk=loc.match(/dubai|abu dhabi|sharjah|uae/i)?'ae'
+          :loc.match(/riyadh|jeddah|saudi|ksa/i)?'sa'
+          :loc.match(/new york|los angeles|chicago|houston|san francisco|seattle|boston|denver|miami|washington|austin|dallas|atlanta|phoenix|portland/i)?'us'
+          :loc.match(/toronto|vancouver|montreal|calgary|edmonton|ottawa|winnipeg/i)?'ca'
+          :'pk';
+
+    var matchScore=calcMatch(j.title,j.description,cvText);
+    var kws=extractKeywords(j.description||'',j.title||search);
+
+    var applyUrl=j.link||j.job_link||(mk==='pk'
+      ?'https://www.rozee.pk/job/jsearch/q/'+encodeURIComponent(j.title||search)
+      :mk==='ae'?'https://www.bayt.com/en/uae/jobs/?q='+encodeURIComponent(j.title||search)
+      :mk==='us'?'https://www.indeed.com/jobs?q='+encodeURIComponent(j.title||search)+(city?'&l='+encodeURIComponent(city):'')
+      :mk==='ca'?'https://ca.indeed.com/jobs?q='+encodeURIComponent(j.title||search)+(city?'&l='+encodeURIComponent(city):'')
+      :'https://www.bayt.com/en/saudi-arabia/jobs/?q='+encodeURIComponent(j.title||search));
+
+    return{
+      id:'live_'+i,
+      market:mk,
+      isLive:true,
+      title:j.title||search,
+      company:j.company||j.employer||j.company_name||'Company',
+      location:j.location||(city+(MKT[mk]?', '+MKT[mk].label:'')),
+      posted:j.posted_at||j.date_posted||j.detected_extensions&&j.detected_extensions.posted_at||'Recently',
+      type:j.schedule||j.employment_type||j.job_type||'Full-time',
+      match:matchScore,
+      description:(j.description||j.snippet||j.highlights&&j.highlights.join(' ')||'').slice(0,450)||j.title+' opportunity at '+(j.company||'this company'),
+      via:j.via||j.source||j.platform||null,
+      thumbnail:j.thumbnail||j.company_logo||null,
+      applyUrl:applyUrl,
+      keywords:kws,
+      requirements:[],
+      hrName:null,
+      hrEmail:j.hrEmail||j.contact_email||null,
+      hrWhatsApp:null,
+      hrAddress:j.location||city,
+      cvMatchPoints:buildMatchPoints(j,cvText),
+      _raw:j
+    };
+  });
+}
+
+/* ══ CV match score from keyword overlap ══ */
+function calcMatch(title,description,cv){
+  if(!cv)return 72;
+  var cvLower=cv.toLowerCase();
+  var text=((title||'')+' '+(description||'')).toLowerCase();
+  var words=text.match(/\b[a-z]{4,}\b/g)||[];
+  var unique=words.filter(function(w,i,a){return a.indexOf(w)===i;});
+  var matches=unique.filter(function(w){return cvLower.includes(w);});
+  var ratio=unique.length?matches.length/Math.min(unique.length,30):0;
+  return Math.max(55,Math.min(95,Math.round(55+ratio*40)));
+}
+
+/* ══ Extract keywords from job description ══ */
+function extractKeywords(desc,title){
+  var stop={'the':1,'and':1,'for':1,'with':1,'this':1,'that':1,'will':1,'have':1,'from':1,'are':1,'been':1,'their':1,'they':1,'your':1,'our':1,'you':1,'not':1,'but':1,'all':1,'can':1,'more':1,'also':1,'such':1,'including':1,'or':1,'an':1,'of':1,'in':1,'to':1,'a':1,'is':1,'as':1,'at':1,'be':1,'by':1,'on':1,'we':1,'us':1,'its':1,'has':1,'who':1,'what':1,'how':1};
+  var words=((title||'')+' '+(desc||'')).toLowerCase().replace(/[^a-z\s]/g,' ').split(/\s+/);
+  var freq={};
+  words.forEach(function(w){if(w.length>3&&!stop[w])freq[w]=(freq[w]||0)+1;});
+  return Object.keys(freq).sort(function(a,b){return freq[b]-freq[a];}).slice(0,7);
+}
+
+/* ══ Build CV-to-job match points ══ */
+function buildMatchPoints(j,cv){
+  if(!cv)return['Upload your CV to see specific match reasons'];
+  var cvL=cv.toLowerCase();
+  var desc=((j.title||'')+' '+(j.description||'')).toLowerCase();
+  var pts=[];
+  var checks=[
+    ['network','Your networking experience aligns with role requirements'],
+    ['linux','Linux/Unix skills match technical requirements'],
+    ['python','Python experience is a direct skill match'],
+    ['admin','System administration background matches this role'],
+    ['aws','Cloud/AWS experience is relevant to this position'],
+    ['management','Management experience aligns with responsibilities'],
+    ['communicat','Strong communication skills match the role'],
+    ['analys','Analytical skills align with job requirements'],
+    ['sql','Database/SQL skills match technical requirements'],
+    ['javascript','JavaScript skills are directly relevant'],
+    ['project','Project management experience is relevant'],
+    ['finance','Finance background aligns with role'],
+    ['account','Accounting/finance experience matches requirements'],
+    ['market','Marketing background is relevant to this role'],
+  ];
+  checks.forEach(function(c){
+    if(desc.includes(c[0])&&cvL.includes(c[0]))pts.push(c[1]);
+  });
+  if(!pts.length)pts.push('Your background may align with this role — review the description');
+  if(pts.length<2)pts.push('Strong application with your current experience');
+  return pts.slice(0,3);
+}
+
+/* ══ AI fallback — generates sample listings when webhook unavailable ══ */
+async function fetchMarketAI(title,mk,city){
+  var mkt=MKT[mk]||{label:mk,cur:'USD',topCos:['Company A','Company B','Company C']};
+  var cvSnip=cvText?cvText.slice(0,280):'No CV uploaded';
+  var prompt='Generate 3 realistic job listings for "'+title+'" in '+city+', '+mkt.label+'.\n'
+    +'Companies: '+mkt.topCos.slice(0,5).join(', ')+'\n'
+    +'Rules: real company names, no salary field, realistic HR emails, cvMatchPoints based on CV below.\n'
+    +'CV: '+cvSnip.slice(0,180)+'\n'
+    +'Return ONLY JSON array:\n'
+    +'[{"id":"'+mk+'1","market":"'+mk+'","isLive":false,"title":"'+title+'","company":"Company","location":"'+city+', '+mkt.label+'","posted":"X hours ago","type":"Full-time","match":80,"description":"2 specific sentences","keywords":["kw1","kw2","kw3"],"hrName":"Name (HR)","hrEmail":"hr@company.com","hrWhatsApp":"'+(mk==='pk'?'+92-3XX-XXXXXXX':'null')+'","hrAddress":"Address in '+city+'","cvMatchPoints":["reason1","reason2"]}]';
+  var r=await callOllama(prompt,null);
+  var jobs=pArr(r);
+  return jobs.filter(function(j){return j.title&&j.company;}).map(function(j,i){
+    j.id=mk+'_ai'+(i+1);j.market=mk;j.isLive=false;
+    if(!j.location)j.location=city+', '+( MKT[mk]?MKT[mk].label:mk);
+    return j;
+  });
+}
+
+function fallbackJobs(title,mk,city){
+  var mkt=MKT[mk]||{label:mk,topCos:['Leading Company','Enterprise Corp','Global Solutions'],defCity:city||'City'};
+  return mkt.topCos.slice(0,3).map(function(co,i){
+    var slug=co.toLowerCase().replace(/[^a-z0-9]/g,'');
+    var ext=mk==='pk'?'.com.pk':mk==='ae'?'.ae':mk==='sa'?'.com.sa':mk==='ca'?'.ca':'.com';
+    return{id:mk+'_fb'+(i+1),market:mk,isLive:false,title:title,company:co,
+      location:city+', '+(mkt.label||mk),
+      posted:(i*4+2)+' hours ago',type:'Full-time',match:78-i*5,
+      description:co+' is seeking a '+title+' in '+city+'. Excellent growth opportunities in a dynamic team.',
+      keywords:extractKeywords(title,title),
+      hrName:'HR Team',hrEmail:'careers@'+slug+ext,
+      hrWhatsApp:mk==='pk'?'+92-300-0000000':null,
+      hrAddress:co+', '+city,
+      cvMatchPoints:buildMatchPoints({title:title,description:''},cvText)};
+  });
+}
+
+function detectMarket(location){
+  var l=(location||'').toLowerCase();
+  if(l.match(/dubai|abu dhabi|sharjah|uae/))return'ae';
+  if(l.match(/riyadh|jeddah|saudi|ksa/))return'sa';
+  if(l.match(/new york|los angeles|chicago|houston|san francisco|seattle|boston|denver|miami|washington|austin|dallas|atlanta|portland|phoenix/))return'us';
+  if(l.match(/toronto|vancouver|montreal|calgary|edmonton|ottawa|winnipeg/))return'ca';
+  return'pk';
+}
+
+function renderJobs(jobs,search,city,isLive){
+  if(!jobs||!jobs.length){
+    document.getElementById('jobs-empty').style.display='block';
+    return;
+  }
+
+  var byMkt={};
+  jobs.forEach(function(j){
+    var m=j.market||detectMarket(j.location||city||'');
+    j.market=m;
+    if(!byMkt[m])byMkt[m]=[];
+    byMkt[m].push(j);
+  });
+
+  var html='';var total=0;
+  var order=currentMarket==='all'?['pk','ae','sa','us','ca']:[currentMarket];
+
+  // If all jobs have undetected market, show under first group
+  if(!order.some(function(m){return byMkt[m]&&byMkt[m].length;})){
+    byMkt[order[0]]=jobs;
+  }
+
+  order.forEach(function(mk){
+    if(!byMkt[mk]||!byMkt[mk].length)return;
+    var mktObj=MKT[mk]||{label:mk,flag:'🌐'};
+
+    // Market header
+    html+='<div style="font-size:13px;font-weight:700;color:var(--ink3);margin-bottom:.65rem;margin-top:'+(total>0?'1.25rem':'0')+';display:flex;align-items:center;gap:8px;flex-wrap:wrap">'
+      +mktObj.flag+' '+mktObj.label+' — '+byMkt[mk].length+' '+(isLive?'live':'sample')+' result'+(byMkt[mk].length!==1?'s':'')+' for "'+escHtml(search)+'"'
+      +(isLive?'<span class="live-badge"><span class="live-dot"></span>Live via SerpAPI</span>':'<span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:var(--amber-soft);color:var(--amber)">AI Sample</span>')
+      +'</div>';
+
+    byMkt[mk].forEach(function(j){
+      total++;
+      var matchCls=j.match>=80?'match-hi':j.match>=65?'match-md':'match-lo';
+
+      var applyUrl=j.applyUrl||j.link||(mk==='pk'
+        ?'https://www.rozee.pk/job/jsearch/q/'+encodeURIComponent(j.title||search)
+        :mk==='ae'?'https://www.bayt.com/en/uae/jobs/?q='+encodeURIComponent(j.title||search)
+        :mk==='us'?'https://www.indeed.com/jobs?q='+encodeURIComponent(j.title||search)
+        :mk==='ca'?'https://ca.indeed.com/jobs?q='+encodeURIComponent(j.title||search)
+        :'https://www.bayt.com/en/saudi-arabia/jobs/?q='+encodeURIComponent(j.title||search));
+
+      var googleUrl='https://www.google.com/search?q='+encodeURIComponent((j.title||search)+' '+(j.company||'')+' '+( city||'jobs'))+'&udm=8';
+
+      // Source badge
+      var sourceBadge=j.isLive&&j.via
+        ?'<span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:var(--teal3);color:var(--teal2);border:1px solid rgba(14,165,199,.2)">via '+escHtml(j.via)+'</span>'
+        :'<span class="ai-sample-badge">AI Sample</span>';
+
+      // Company thumbnail
+      var thumb=j.thumbnail?'<img src="'+j.thumbnail+'" style="width:34px;height:34px;border-radius:8px;object-fit:contain;background:#fff;padding:2px;flex-shrink:0;border:1px solid var(--bd)" onerror="this.style.display=\'none\'">':'';
+
+      // CV match reasons
+      var matchBox=(j.cvMatchPoints&&j.cvMatchPoints.length)
+        ?'<div class="match-box"><div class="match-box-head">Why your CV matches:</div>'
+          +j.cvMatchPoints.map(function(p){return'<div class="match-box-item"><span style="color:var(--green);font-weight:700">✓</span> '+escHtml(p)+'</div>';}).join('')+'</div>':'';
+
+      // HR block — show email prominently if available
+      var hrBlock='';
+      if(j.hrName||j.hrEmail){
+        hrBlock='<div class="hr-block">'
+          +'<div class="hr-block-head">HR Contact</div>'
+          +(j.hrName?'<div class="hr-name">'+escHtml(j.hrName)+'</div>':'')
+          +(j.hrEmail?'<a href="mailto:'+j.hrEmail+'" class="hr-email"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>'+escHtml(j.hrEmail)+'</a>':'')
+          +(j.hrWhatsApp&&j.hrWhatsApp!=='null'?'<a href="https://wa.me/'+j.hrWhatsApp.replace(/[^0-9]/g,'')+'" target="_blank" class="hr-wa">💬 '+escHtml(j.hrWhatsApp)+'</a>':'')
+          +(j.hrAddress?'<div class="hr-addr">📍 '+escHtml(j.hrAddress)+'</div>':'')
+          +'</div>';
+      }
+
+      // Portal chips
+      var cardPortals='<div class="card-portals">';
+      if(j.isLive&&j.applyUrl){
+        cardPortals+='<a href="'+j.applyUrl+'" target="_blank" class="card-portal" style="background:var(--green3);color:var(--green);border-color:rgba(21,128,61,.25);font-weight:700">🔴 Apply Direct ↗</a>';
+      }
+      (PORTALS[mk]||[]).slice(0,2).forEach(function(p){
+        var url=p.url(encodeURIComponent(j.title||search),encodeURIComponent((j.location||city||'').split(',')[0]));
+        cardPortals+='<a href="'+url+'" target="_blank" class="card-portal"><span class="pc-dot" style="background:'+p.dot+'"></span>'+escHtml(p.name)+'</a>';
+      });
+      cardPortals+='<a href="'+googleUrl+'" target="_blank" class="card-portal"><span class="pc-dot" style="background:#EA4335"></span>Google Jobs</a>';
+      cardPortals+='</div>';
+
+      var kwHtml='<div class="kw-row">'+(j.keywords||[]).map(function(k){return'<span class="kwtag">'+escHtml(k)+'</span>';}).join('')+'</div>';
+      var desc=escHtml((j.description||'').slice(0,380))+(j.description&&j.description.length>380?'…':'');
+
+      html+='<div class="jcard">'
+        +'<div class="jcard-top">'
+        +'<div style="display:flex;align-items:flex-start;gap:10px;flex:1;min-width:0">'
+        +thumb
+        +'<div style="min-width:0;flex:1">'
+        +'<div class="jcard-title">'+escHtml(j.title||search)+'</div>'
+        +'<div class="jcard-meta">'+escHtml(j.company)+' <span style="color:var(--ink4)">·</span> '+escHtml(j.location)+' <span style="color:var(--ink4)">·</span> '+escHtml(j.type||'Full-time')+'</div>'
+        +'</div></div>'
+        +'<div class="jcard-flags">'
+        +sourceBadge
+        +'<span class="match-badge '+matchCls+'">'+j.match+'% match</span>'
+        +'<span class="time-badge">🕐 '+escHtml(j.posted||'Recent')+'</span>'
+        +'</div>'
+        +'</div>'
+        +(desc?'<div class="jcard-desc">'+desc+'</div>':'')
+        +matchBox
+        +hrBlock
+        +cardPortals
+        +kwHtml
+        +'<div class="jcard-foot">'
+        +'<div class="jcard-actions">'
+        +'<a href="'+applyUrl+'" target="_blank" class="btn-apply">'+(j.isLive?'Apply Direct ↗':'Apply ↗')+'</a>'
+        +'<button class="btn-tailor" onclick="tailorCV(\''+j.id+'\')">🎯 Tailor CV →</button>'
+        +'</div>'
+        +'</div>'
+        +'</div>';
+    });
+  });
+
+  document.getElementById('jobs-list').innerHTML=html;
+  var meta=document.getElementById('jobs-meta');
+  if(meta){
+    meta.innerHTML=(isLive
+      ?'<strong style="color:var(--green)">🔴 '+total+' live job'+(total!==1?'s':'')+'</strong>'
+      :'<strong>'+total+' AI sample listing'+(total!==1?'s':'')+'</strong>')
+      +' for "'+escHtml(search)+'"'+(city?' in '+escHtml(city):'')
+      +' · last '+timeHrs+'h · '+new Date().toLocaleTimeString()
+      +(isLive?' · Real data via SerpAPI':' · <a href="#" onclick="fetchJobs();return false" style="color:var(--mon)">Try live search</a>');
+    meta.classList.add('show');
+  }
+  var tabJobs=document.getElementById('tab-jobs');
+  if(tabJobs)tabJobs.classList.add('done');
+}
+
+/* ══ TAILOR FROM MANUAL ══ */
+function tailorFromManual(){
+  var title=(document.getElementById('manual-job-title').value||'').trim();
+  var company=(document.getElementById('manual-company').value||'').trim();
+  var loc=(document.getElementById('manual-location').value||'').trim();
+  var desc=(document.getElementById('manual-job-desc').value||'').trim();
+  if(!title){alert('Enter the job title.');return;}
+  var mk=loc.toLowerCase().match(/dubai|abu dhabi|sharjah|uae/)?'ae':
+         loc.toLowerCase().match(/riyadh|jeddah|saudi/)?'sa':
+         loc.toLowerCase().match(/new york|los angeles|chicago|houston|phoenix|san francisco|seattle|boston|denver|miami|atlanta|austin|dallas|washington|portland|minneapolis|detroit|charlotte|las vegas|nashville|philadelphia/)?'us':
+         loc.toLowerCase().match(/toronto|vancouver|montreal|calgary|edmonton|ottawa|winnipeg|quebec|hamilton|halifax|victoria/)?'ca':'pk';
+  var mktObj=MKT[mk];
+  var synJob={id:'manual_1',market:mk,title:title,company:company||'Target Company',
+    location:loc||(mktObj.defCity+', '+mktObj.label),salary:mktObj.salRange,
+    posted:'just now',type:'Full-time',match:88,
+    description:desc.slice(0,400)||'Role at '+(company||'the company'),
+    requirements:[],keywords:[],
+    hrName:'Hiring Manager',hrEmail:'hr@'+(company||'company').toLowerCase().replace(/[^a-z0-9]/g,'')+'.com',
+    hrWhatsApp:mk==='pk'?'+92-300-0000000':null,
+    hrAddress:(company||'Company')+', '+(loc||mktObj.defCity),_jobDesc:desc};
+  jobsList=[synJob];tailorCV('manual_1');
+}
+
+/* ══ TAILOR CV — 3-STEP FAST ══ */
+async function tailorCV(jid){
+  selectedJob=jobsList.find(function(j){return j.id===jid;});
+  if(!selectedJob)return;
+  var workCV=(document.getElementById('cv-edit').value||cvText||document.getElementById('cv-text').value||'').trim();
+  if(!workCV||workCV.length<50){alert('Upload your CV first (Step 1).');goTab('upload');return;}
+  goTab('output');
+  document.getElementById('tailor-empty').style.display='none';
+  document.getElementById('tailor-loading').style.display='block';
+  document.getElementById('tailor-results').style.display='none';
+  var mkt=MKT[selectedJob.market||'pk'];
+  var hrName=selectedJob.hrName||'Hiring Manager';
+  var hrEmail=selectedJob.hrEmail||'hr@company.com';
+  var jobDesc=selectedJob._jobDesc||selectedJob.description||'';
+  var cvSnip=workCV.slice(0,2500);
+  tailoredData={matchScore:85,atsScore:80,matchedKeywords:[],missingKeywords:[],tailoredCV:'',coverLetter:'',interviewTips:''};
+
+  // ── STEP 1: ATS CV (show immediately) ──
+  document.getElementById('tstatus').textContent='Step 1/3 — Writing ATS CV…';
+  var cvPrompt='You are a professional CV writer. Rewrite this CV for ATS score 75-88%.\n\n'
+    +'TARGET JOB: "'+selectedJob.title+'" at '+selectedJob.company+', '+selectedJob.location+'\n'
+    +(jobDesc?'JOB DESCRIPTION:\n'+jobDesc.slice(0,600)+'\n\n':'')
+    +'CANDIDATE CV:\n'+cvSnip+'\n\n'
+    +'INSTRUCTIONS:\n'
+    +'- Preserve ALL real information from candidate CV (names, dates, companies, achievements)\n'
+    +'- Mirror keywords from the job description/title\n'
+    +'- Keep bullet points with Action verb + Task + Metric format\n'
+    +'- Output plain text with === section dividers\n\n'
+    +'REQUIRED SECTIONS (all 6 mandatory):\n'
+    +'[CANDIDATE FULL NAME]\nEmail | Phone | LinkedIn | '+selectedJob.location+'\n\n'
+    +'=== PROFESSIONAL SUMMARY ===\n[3 sentences: expertise + target role keywords + value to '+selectedJob.company+']\n\n'
+    +'=== PROFESSIONAL EXPERIENCE ===\n[Title] | [Company] | [Location] | [Dates]\n- [Metric-driven bullet]\n- [Metric-driven bullet]\n- [Metric-driven bullet]\n\n'
+    +'=== CORE COMPETENCIES ===\n[keyword1] | [keyword2] | [keyword3] | [keyword4] | [keyword5]\n\n'
+    +'=== EDUCATION ===\n[Degree] | [University] | [Year]\n\n'
+    +'=== CERTIFICATIONS ===\n[Certificate] — [Body] ([Year])\n\n'
+    +'Return ONLY the formatted CV text. Do NOT add any explanation or preamble.';
+
+  try{
+    var cvRes=await callOllama(cvPrompt,'tailor-stream-box');
+    tailoredData.tailoredCV=cvRes.trim();
+    document.getElementById('tailor-loading').style.display='none';
+    document.getElementById('tailor-results').style.display='block';
+    document.getElementById('oo-cv').textContent=tailoredData.tailoredCV;
+    renderTailor(tailoredData);
+    document.getElementById('tab-output').classList.add('done');
+  }catch(e){
+    var fb=buildFallback(selectedJob,mkt,hrName,hrEmail);
+    tailoredData.tailoredCV=fb.tailoredCV;
+    document.getElementById('tailor-loading').style.display='none';
+    document.getElementById('tailor-results').style.display='block';
+    document.getElementById('oo-cv').textContent=tailoredData.tailoredCV;
+    renderTailor(tailoredData);
+  }
+
+  // ── STEP 2: Cover Letter (background) ──
+  document.getElementById('oo-cover').textContent='✍ Writing cover letter…';
+  try{
+    var clRes=await callOllama(
+      'Write a professional cover letter.\n'
+      +'Applicant for: "'+selectedJob.title+'" at '+selectedJob.company+', '+selectedJob.location+'\n'
+      +'HR: '+hrName+' ('+hrEmail+')\n'
+      +(jobDesc?'Job description: '+jobDesc.slice(0,400)+'\n':'')
+      +'Candidate background:\n'+cvSnip.slice(0,900)+'\n\n'
+      +'Format:\n[Full Name]\n[Email] | [Phone] | [LinkedIn]\n[Date]\n\n'
+      +hrName+'\n'+selectedJob.company+'\n'+selectedJob.hrAddress+'\n\n'
+      +'Subject: Application for '+selectedJob.title+'\n\n'
+      +'Dear '+hrName+',\n\n'
+      +'[Paragraph 1: strong opening hook + why '+selectedJob.company+']\n'
+      +'[Paragraph 2: achievement 1 with metric]\n'
+      +'[Paragraph 3: achievement 2 with metric + closing]\n\n'
+      +'Yours sincerely,\n[Name]\n\n'
+      +'Return ONLY the cover letter text. No explanation.',
+    null);
+    tailoredData.coverLetter=clRes.trim();
+    document.getElementById('oo-cover').textContent=tailoredData.coverLetter;
+  }catch(e){
+    tailoredData.coverLetter=buildFallback(selectedJob,mkt,hrName,hrEmail).coverLetter;
+    document.getElementById('oo-cover').textContent=tailoredData.coverLetter;
+  }
+
+  // ── STEP 3: Interview Tips (background) ──
+  document.getElementById('oo-tips').textContent='📋 Preparing interview guide…';
+  try{
+    var tipsRes=await callOllama(
+      'Write 7 specific interview tips for "'+selectedJob.title+'" at '+selectedJob.company+', '+selectedJob.location+' ('+mkt.label+').\n'
+      +'HR email for follow-up: '+hrEmail+'\nAdvertised salary: '+selectedJob.salary+'\n\n'
+      +'Include: company research, STAR Q&A examples, salary negotiation in '+mkt.cur+', smart questions, local culture, follow-up email.\n'
+      +'Return ONLY a numbered plain text list. No JSON.',
+    null);
+    tailoredData.interviewTips=tipsRes.trim();
+    document.getElementById('oo-tips').textContent=tailoredData.interviewTips;
+  }catch(e){
+    tailoredData.interviewTips=buildFallback(selectedJob,mkt,hrName,hrEmail).interviewTips;
+    document.getElementById('oo-tips').textContent=tailoredData.interviewTips;
+  }
+}
+
+function buildFallback(job,mkt,hrName,hrEmail){
+  var kw=job.keywords||['management','communication','analysis'];
+  return{
+    tailoredCV:'[YOUR FULL NAME]\nEmail: your@email.com | Phone: +92-3XX-XXXXXXX | Location: '+job.location+'\nLinkedIn: linkedin.com/in/yourname\n\n=== PROFESSIONAL SUMMARY ===\nResults-driven '+job.title+' with expertise in '+kw.slice(0,3).join(', ')+'. Consistent record of measurable outcomes in '+job.location+'. Seeking to bring strategic value to '+job.company+'.\n\n=== PROFESSIONAL EXPERIENCE ===\n[Job Title] | [Company] | '+job.location+' | [YYYY–Present]\n- Led initiative achieving 28% improvement in operational efficiency\n- Reduced costs by 35% through process improvements\n- Managed 30+ stakeholder relationships with 94% satisfaction rate\n\n=== CORE COMPETENCIES ===\n'+kw.join(' | ')+'\n\n=== EDUCATION ===\n[Degree] | [University] | [Year]\n\n=== CERTIFICATIONS ===\n[Certificate] — [Body] ([Year])\nIn Progress: [Relevant Certification]\n\nNOTE: Upload your real CV in Step 1 for a personalized output.',
+    coverLetter:'[YOUR NAME]\nyour@email.com | +92-3XX-XXXXXXX\nlinkedin.com/in/yourname\n\n'+new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})+'\n\n'+hrName+'\n'+job.company+'\n'+job.hrAddress+'\n\nSubject: Application for '+job.title+'\n\nDear '+hrName+',\n\nI am writing with great enthusiasm to apply for the '+job.title+' position at '+job.company+'. My background in '+kw.slice(0,2).join(' and ')+' aligns closely with your requirements.\n\nIn my previous role, I [achievement with metric]. I also [second achievement with metric]. I look forward to contributing to '+job.company+'.\n\nYours sincerely,\n[Your Name]',
+    interviewTips:'INTERVIEW GUIDE — '+job.title+' at '+job.company+'\n\n1. RESEARCH: Visit '+job.company+'\'s website, LinkedIn, and recent news.\n\n2. TECHNICAL Q: "Describe your '+kw[0]+' experience" — STAR method.\n\n3. BEHAVIORAL Q: "Describe managing a tough deadline" — specific example.\n\n4. SALARY ('+job.salary+'): Let employer offer first, counter with market data.\n\n5. QUESTIONS TO ASK: "What does success look like in 90 days?"\n\n6. '+mkt.label.toUpperCase()+' CULTURE: Dress formally, arrive 10 min early, bring 2 printed CVs.\n\n7. FOLLOW-UP: Email '+hrEmail+' within 24 hours of interview.'
+  };
+}
+
+function renderTailor(d){
+  document.getElementById('tjob-title').textContent=selectedJob.title+(selectedJob.company?' — '+selectedJob.company:'');
+  document.getElementById('tjob-meta').textContent=(selectedJob.location||'')+(selectedJob.type?' · '+selectedJob.type:'')+(selectedJob.posted?' · '+selectedJob.posted:'');
+  document.getElementById('tjob-hr').textContent=selectedJob.hrName?'HR: '+selectedJob.hrName+(selectedJob.hrEmail?' · '+selectedJob.hrEmail:''):'';
+  document.getElementById('tjob-addr').textContent=selectedJob.hrAddress?'📍 '+selectedJob.hrAddress:'';
+  document.getElementById('tjob-salary').textContent=selectedJob.salary?'💰 '+selectedJob.salary:'';
+  document.getElementById('tmatch').textContent='Match: '+(d.matchScore||85)+'%';
+  document.getElementById('tats-badge').textContent='ATS: '+(d.atsScore||80)+'%';
+  var mk=selectedJob.market||'pk';
+  var q=encodeURIComponent(selectedJob.title||'');
+  var al=document.getElementById('tapply-link');
+  if(mk==='pk'){al.href='https://www.rozee.pk/job/jsearch/q/'+q;al.textContent='Apply on Rozee.pk ↗';}
+  else if(mk==='ae'){al.href='https://www.bayt.com/en/uae/jobs/?q='+q;al.textContent='Apply on Bayt.com ↗';}
+  else{al.href='https://www.bayt.com/en/saudi-arabia/jobs/?q='+q;al.textContent='Apply on Bayt.com KSA ↗';}
+  document.getElementById('tkw').innerHTML=
+    (d.matchedKeywords||[]).map(function(k){return'<span class="kw hit">✓ '+k+'</span>';}).join('')+
+    (d.missingKeywords||[]).map(function(k){return'<span class="kw miss">+ '+k+'</span>';}).join('');
+}
+
+function swOut(t){
+  ['cv','cover','tips'].forEach(function(x){
+    document.getElementById('oo-'+x).style.display=x===t?'block':'none';
+    document.getElementById('ot-'+x).classList.toggle('active',x===t);
+  });
+}
+function getActive(){return['cv','cover','tips'].find(function(x){return document.getElementById('oo-'+x).style.display!=='none';})||'cv';}
+
+/* ══ DOWNLOADS ══ */
+function downloadTxt(tab){
+  tab=tab||getActive();
+  var txt=(document.getElementById('oo-'+tab)||{}).textContent||'';
+  if(!txt.trim()){showDlStatus('⚠ No content yet. Tailor a CV first.');return;}
+  var labels={cv:'ATS_CV',cover:'Cover_Letter',tips:'Interview_Guide'};
+  var co=(selectedJob?selectedJob.company:'Job').replace(/[^a-zA-Z0-9]/g,'_');
+  var blob=new Blob([txt],{type:'text/plain;charset=utf-8'});
+  var a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download=labels[tab]+'_'+co+'_'+new Date().toISOString().slice(0,10)+'.txt';
+  document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(a.href);
+  showDlStatus('✓ Downloaded: '+a.download);
+}
+function downloadWord(tab){
+  tab=tab||getActive();
+  var txt=(document.getElementById('oo-'+tab)||{}).textContent||'';
+  if(!txt.trim()){showDlStatus('⚠ No content yet. Tailor a CV first.');return;}
+  var labels={cv:'ATS_CV_Word',cover:'Cover_Letter_Word',tips:'Interview_Guide'};
+  var co=(selectedJob?selectedJob.company:'Job').replace(/[^a-zA-Z0-9]/g,'_');
+  var fname=labels[tab]+'_'+co+'_'+new Date().toISOString().slice(0,10)+'.doc';
+  var lines=txt.split('\n');
+  var rtf='{\\rtf1\\ansi\\deff0\n{\\fonttbl{\\f0\\fswiss\\fcharset0 Arial;}}\n{\\colortbl;\\red59\\green130\\blue246;\\red34\\green197\\blue94;\\red100\\green116\\blue139;}\n\\paperw12240\\paperh15840\\margl1440\\margr1440\\margt1080\\margb1080\\widowctrl\n';
+  if(tab==='cv'||tab==='cover'){
+    rtf+='{\\header\\pard\\qr\\f0\\fs17\\cf3 '+(tab==='cv'?'ATS CV':'Cover Letter')+' — CV Optimizer Agent\\par}\n';
+    rtf+='{\\footer\\pard\\qc\\f0\\fs15\\cf3 Generated by CV Optimizer Agent — Pakistan · UAE · KSA\\par}\n';
+  }
+  var isCV=(tab==='cv');var first=true;
+  lines.forEach(function(line){
+    var t=line.trim();
+    if(!t){rtf+='\\pard\\sb50\\sa50\\par\n';return;}
+    var esc=t.replace(/\\/g,'\\\\').replace(/\{/g,'\\{').replace(/\}/g,'\\}').replace(/[^\x00-\x7F]/g,function(c){return'\\u'+c.charCodeAt(0)+'?';});
+    if(/^={5,}/.test(t)||/^-{5,}/.test(t)){rtf+='\\pard\\sb80\\sa0\\brdrb\\brdrs\\brdrw8\\brdrcolor1\\f0\\fs18\\cf1  \\par\n';return;}
+    if(t.replace(/=/g,'').trim()===''||t.replace(/-/g,'').trim()===''){return;}
+    var secTitle=t.replace(/^=+\s*|\s*=+$/g,'').trim();
+    if(secTitle&&secTitle!==t&&secTitle.length>0){rtf+='\\pard\\sb160\\sa50\\f0\\fs22\\cf1\\b '+secTitle.replace(/\\/g,'\\\\').replace(/\{/g,'\\{').replace(/\}/g,'\\}')+'\\b0\\par\n';return;}
+    if(t.includes(' | ')&&isCV&&(t.match(/\|/g)||[]).length>=1&&!t.includes('@')){rtf+='\\pard\\sb120\\sa40\\f0\\fs21\\cf1\\b '+esc+'\\b0\\par\n';return;}
+    if((t.startsWith('-')||t.startsWith('•'))&&t.length>2){rtf+='\\pard\\li360\\fi-360\\sb30\\sa30\\f0\\fs21 \\bullet  '+esc.replace(/^[-•]\s*/,'')+'\\par\n';return;}
+    if(isCV&&first&&t.length>0&&t.length<80&&!t.includes('=')){rtf+='\\pard\\qc\\sb0\\sa70\\f0\\fs34\\b '+esc+'\\b0\\par\n';first=false;return;}
+    if(tab==='cover'&&t.startsWith('Subject:')){rtf+='\\pard\\sb70\\sa70\\f0\\fs21\\b '+esc+'\\b0\\par\n';return;}
+    rtf+='\\pard\\sb30\\sa30\\f0\\fs21 '+esc+'\\par\n';first=false;
+  });
+  rtf+='}';
+  var blob=new Blob([rtf],{type:'application/msword'});
+  var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=fname;
+  document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(a.href);
+  showDlStatus('✓ Word document saved: '+fname+' — Open in Microsoft Word or Google Docs');
+}
+function showDlStatus(msg){var el=document.getElementById('dl-status');if(el){el.textContent=msg;el.style.display='block';setTimeout(function(){el.style.display='none';},6000);}}
+function copyOut(){
+  var txt=(document.getElementById('oo-'+getActive())||{}).textContent||'';
+  navigator.clipboard.writeText(txt).then(function(){showDlStatus('✓ Copied to clipboard!');}).catch(function(){showDlStatus('Copy failed — select and copy manually.');});
+}
+
+/* ══ PDF DOWNLOAD ══ */
+function downloadPDF(){
+  var txt=(document.getElementById('oo-cv')||{}).textContent||'';
+  if(!txt.trim()){showDlStatus('⚠ No CV content yet. Tailor a CV first.');return;}
+  var co=(selectedJob?selectedJob.company:'CV').replace(/[^a-zA-Z0-9]/g,'_');
+  // Build an HTML page styled for PDF printing
+  var html='<!DOCTYPE html><html><head><meta charset="UTF-8">'
+    +'<title>ATS CV — '+co+'</title>'
+    +'<style>'
+    +'*{margin:0;padding:0;box-sizing:border-box}'
+    +'body{font-family:Arial,sans-serif;font-size:11pt;line-height:1.5;color:#0F172A;padding:18mm 20mm}'
+    +'h1.name{font-size:20pt;font-weight:800;color:#0F172A;margin-bottom:4px}'
+    +'.contact{font-size:10pt;color:#475569;margin-bottom:12px}'
+    +'.sec-head{font-size:11pt;font-weight:700;color:#2563EB;border-bottom:1.5px solid #2563EB;padding-bottom:3px;margin-top:14px;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}'
+    +'.job-line{font-weight:700;font-size:10.5pt;color:#1E293B;margin-top:8px;margin-bottom:2px}'
+    +'ul{margin-left:14px;margin-bottom:6px}'
+    +'li{margin-bottom:2px;font-size:10.5pt}'
+    +'p{font-size:10.5pt;margin-bottom:5px}'
+    +'.kw{font-size:10pt;color:#334155}'
+    +'@media print{body{padding:12mm 15mm}}'
+    +'</style></head><body>';
+
+  var lines=txt.split('\n');
+  var firstLine=true;
+  lines.forEach(function(line){
+    var t=line.trim();
+    if(!t){html+='<br>';return;}
+    // Name line
+    if(firstLine&&!t.startsWith('=')&&t.length<80){html+='<h1 class="name">'+esc(t)+'</h1>';firstLine=false;return;}
+    // Contact line
+    if(firstLine===false&&line.match(/email|phone|\|/i)&&!t.startsWith('=')){
+      html+='<div class="contact">'+esc(t)+'</div>';return;
+    }
+    // Section headers
+    var secMatch=t.match(/^={3,}\s*(.*?)\s*={0,}/);
+    if(secMatch){html+='<div class="sec-head">'+esc(secMatch[1])+'</div>';return;}
+    if(/^={5,}$/.test(t)||/^-{5,}$/.test(t)){return;}
+    // All caps section header (alternative format)
+    if(/^[A-Z][A-Z\s&\/]+$/.test(t)&&t.length>=3&&t.length<=50&&!/\|/.test(t)){
+      html+='<div class="sec-head">'+esc(t)+'</div>';return;
+    }
+    // Job title lines with |
+    if(t.includes(' | ')&&(t.match(/\|/g)||[]).length>=1){
+      html+='<div class="job-line">'+esc(t)+'</div>';return;
+    }
+    // Bullet points
+    if(t.startsWith('-')||t.startsWith('•')){
+      html+='<ul><li>'+esc(t.replace(/^[-•]\s*/,''))+'</li></ul>';return;
+    }
+    // Default paragraph
+    html+='<p>'+esc(t)+'</p>';
+  });
+
+  html+='</body></html>';
+
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+  // Open in new window and trigger print-to-PDF
+  var win=window.open('','_blank','width=800,height=900');
+  if(!win){showDlStatus('⚠ Please allow popups to download PDF.');return;}
+  win.document.write(html);
+  win.document.close();
+  win.focus();
+  setTimeout(function(){
+    win.print();
+    showDlStatus('✓ PDF download dialog opened — choose "Save as PDF" in your printer dialog.');
+  },500);
+}
+
+/* ══ ANTHROPIC KEY ══ */
+(function(){
+  var k=document.getElementById('anthropic-key');
+  if(!k)return;
+  var sv=localStorage.getItem('anthropic_key');
+  if(sv)k.value=sv;
+  k.addEventListener('input',function(){localStorage.setItem('anthropic_key',this.value);});
+})();
+
+/* ══ INIT ══ */
+setTime(48);
+// Render portal cards on load with default search
+setTimeout(function(){
+  liveUpdatePortals();
+  renderPortalCards();
+},100);
+connectOllama();
+</script>
+</body>
+</html>
