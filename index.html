@@ -360,7 +360,7 @@ input:focus,textarea:focus,select.inp:focus{outline:none;border-color:var(--mon)
 <!-- AI settings panel -->
 <div class="ai-panel" id="ai-panel">
   <div class="ai-panel-head">⚙ AI Engine</div>
-  <div class="ai-field"><label>Ollama URL</label><input type="text" id="ollama-url" value="http://localhost:11434" oninput="scheduleConnect()"></div>
+  <div class="ai-field"><label>Ollama URL</label><input type="text" id="ollama-url" value="https://b7f1-39-48-178-3.ngrok-free.app" oninput="scheduleConnect()"></div>
   <div class="ai-field"><label>Model</label><select id="model-sel" onchange="saveModel()"><option value="">— connect first —</option></select></div>
   <div class="ai-field"><label>Claude API Key (fallback)</label><input type="password" id="anthropic-key" placeholder="sk-ant-…"></div>
   <div style="display:flex;gap:7px;margin-top:.55rem">
@@ -941,7 +941,7 @@ document.addEventListener('click',function(e){
 });
 
 /* ══ OLLAMA ══ */
-function getOllamaBase(){return(document.getElementById('ollama-url').value||'http://localhost:11434').replace(/\/$/,'');}
+function getOllamaBase(){return(document.getElementById('ollama-url').value||'https://b7f1-39-48-178-3.ngrok-free.app').replace(/\/$/,'');}
 function getModel(){var s=document.getElementById('model-sel');return s.value||availableModels[0]||'llama3';}
 function getApiKey(){return(document.getElementById('anthropic-key').value||localStorage.getItem('anthropic_key')||'').trim();}
 function saveModel(){localStorage.setItem('cv_model',getModel());}
