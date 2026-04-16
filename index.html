@@ -952,7 +952,10 @@ async function connectOllama(){
   var lbl=document.getElementById('ai-lbl'),det=document.getElementById('ai-status-txt');
   if(lbl)lbl.textContent='Connecting…';
   try{
-    var res=await fetch(getOllamaBase()+'/api/tags',{signal:AbortSignal.timeout(5000)});
+    var res=await fetch(getOllamaBase()+'/api/tags',{
+      signal:AbortSignal.timeout(5000),
+      headers: { 'ngrok-skip-browser-warning': 'true' }
+    });
     if(!res.ok)throw new Error('HTTP '+res.status);
     var data=await res.json();
     var models=(data.models||[]).map(function(m){return m.name;});
@@ -984,8 +987,14 @@ async function _ollamaDirect(prompt,streamElId){
   var base=getOllamaBase(),model=getModel();
   var sel=streamElId?document.getElementById(streamElId):null;
   if(sel)sel.textContent='';
-  var res=await fetch(base+'/api/generate',{method:'POST',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({model:model,prompt:prompt,stream:true,options:{temperature:0.2,num_predict:4096}})});
+  var res=await fetch(base+'/api/generate',{
+    method:'POST',
+    headers:{
+      'Content-Type':'application/json',
+      'ngrok-skip-browser-warning': 'true'
+    },
+    body:JSON.stringify({model:model,prompt:prompt,stream:true,options:{temperature:0.2,num_predict:4096}})
+  });
   if(!res.ok){var et=await res.text();throw new Error('Ollama '+res.status+': '+et);}
   var reader=res.body.getReader(),decoder=new TextDecoder(),full='';
   while(true){
